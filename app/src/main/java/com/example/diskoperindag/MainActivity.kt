@@ -11,17 +11,10 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnLogin.setOnClickListener {
-            login()
-        }
-    }
-
-    private fun login() {
-        val intent = Intent(this, DashboardActivity::class.java)
-        startActivity(intent)
     }
 
 }

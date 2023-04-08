@@ -1,11 +1,9 @@
 # Android
-Diskoperindag - News and Forms Centre App
-Todo
+News and Forms Centre App for DISKOPERINDAG
 
-#### Install
-Just sync gradle and you're done. nyalain api di [web](https://github.com/ongghuen/diskoperindag-web). 
+#### Main Resources
+- [Android Course](https://developer.android.com/courses/android-basics-kotlin/course)
+- [Commonsware Book](https://commonsware.com/AndExplore/pages/index)
 
-#### Todos
-- [ ] Login
-- [ ] News
-- [ ] Apps
+#### Other References/Resources
+- [I'm trying to use safe args but when i add the dependencies to the project level build.gradle it gives me this error](https://stackoverflow.com/questions/73206597/im-trying-to-use-safe-args-but-when-i-add-the-dependencies-to-the-project-level/73208002#73208002)
