@@ -12,8 +12,8 @@
         android:icon="@drawable/ic_archive"/>
 
     <item
-        android:id="@+id/formsFragment"
-        android:title="List"
-        android:icon="@drawable/ic_forms"/>
+        android:id="@+id/profileFragment"
+        android:title="Profile"
+        android:icon="@drawable/ic_profile"/>
 
 </menu>

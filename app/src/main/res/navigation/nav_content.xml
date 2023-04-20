@@ -16,8 +16,8 @@
         android:label="fragment_saved"
         tools:layout="@layout/fragment_saved" />
     <fragment
-        android:id="@+id/formsFragment"
-        android:name="com.example.diskoperindag.fragments.FormsFragment"
+        android:id="@+id/profileFragment"
+        android:name="com.example.diskoperindag.fragments.ProfileFragment"
         android:label="fragment_forms"
-        tools:layout="@layout/fragment_forms" />
+        tools:layout="@layout/fragment_profile" />
 </navigation>
