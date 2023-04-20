@@ -3,7 +3,10 @@ package com.example.diskoperindag
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Button
+import android.widget.Toast
 import com.example.diskoperindag.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -16,5 +19,4 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
     }
-
 }

@@ -12,7 +12,7 @@
         android:theme="@style/Theme.Diskoperindag"
         tools:targetApi="31">
         <activity
-            android:name=".DashboardActivity"
+            android:name=".fragments.DashboardFragment"
             android:exported="false" />
         <activity
             android:name=".MainActivity"

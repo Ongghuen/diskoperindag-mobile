@@ -8,14 +8,18 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.diskoperindag.fragments.LoginFragment"
-        android:label="LoginFragment" >
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login"
+        >
         <action
-            android:id="@+id/action_loginFragment_to_dashboardActivity"
-            app:destination="@id/dashboardActivity" />
+            android:id="@+id/action_loginFragment_to_dashboardFragment"
+            app:destination="@id/dashboardFragment" />
     </fragment>
-    <activity
-        android:id="@+id/dashboardActivity"
-        android:name="com.example.diskoperindag.DashboardActivity"
+
+    <fragment
+        android:id="@+id/dashboardFragment"
         android:label="activity_dashboard"
-        tools:layout="@layout/activity_dashboard" />
+        android:name="com.example.diskoperindag.fragments.DashboardFragment"
+        tools:layout="@layout/fragment_dashboard" />
+
 </navigation>

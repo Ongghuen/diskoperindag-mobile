@@ -1,15 +1,11 @@
 package com.example.diskoperindag.fragments
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.navigation.findNavController
-import com.example.diskoperindag.DashboardActivity
-import com.example.diskoperindag.R
 import com.example.diskoperindag.databinding.FragmentLoginBinding
 
 class LoginFragment : Fragment() {
@@ -30,7 +26,7 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.btnLogin.setOnClickListener {
-            val toDashboard = LoginFragmentDirections.actionLoginFragmentToDashboardActivity()
+            val toDashboard = LoginFragmentDirections.actionLoginFragmentToDashboardFragment()
             binding.root.findNavController().navigate(toDashboard)
         }
     }
@@ -38,11 +34,6 @@ class LoginFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
-    }
-
-    private fun login() {
-        val intent = Intent(this.requireContext(), DashboardActivity::class.java)
-        startActivity(intent)
     }
 
 }
