@@ -12,7 +12,7 @@ import com.example.diskoperindag.model.News
 class NewsAdapter(private val context: Context?, private val data: List<News>) :
     RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
     class NewsViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
-        val teksviyuw: TextView = view.findViewById<TextView>(R.id.item_title)
+        val teksviyuw: TextView = view.findViewById<TextView>(R.id.title)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
