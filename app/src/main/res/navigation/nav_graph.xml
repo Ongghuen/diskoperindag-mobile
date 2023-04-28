@@ -24,6 +24,11 @@
         android:label="activity_dashboard"
         android:name="com.ongghuen.diskoperindag.fragments.DashboardFragment"
         tools:layout="@layout/fragment_dashboard" >
+        <action
+            android:id="@+id/action_dashboardFragment_to_loginFragment"
+            app:destination="@id/loginFragment"
+            app:popUpTo="@id/dashboardFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 
 </navigation>
