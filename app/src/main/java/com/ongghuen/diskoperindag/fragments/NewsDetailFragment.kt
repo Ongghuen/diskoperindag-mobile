@@ -1,12 +1,12 @@
-package com.example.diskoperindag.fragments
+package com.ongghuen.diskoperindag.fragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.diskoperindag.R
-import com.example.diskoperindag.databinding.FragmentNewsDetailBinding
+import com.ongghuen.diskoperindag.R
+import com.ongghuen.diskoperindag.databinding.FragmentNewsDetailBinding
 
 class NewsDetailFragment : Fragment() {
 

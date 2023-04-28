@@ -1,4 +1,4 @@
-package com.example.diskoperindag
+package com.ongghuen.diskoperindag
 
 import org.junit.Test
 

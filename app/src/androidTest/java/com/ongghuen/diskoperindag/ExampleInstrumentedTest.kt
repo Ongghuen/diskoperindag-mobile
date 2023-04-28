@@ -1,4 +1,4 @@
-package com.example.diskoperindag
+package com.ongghuen.diskoperindag
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

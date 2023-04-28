@@ -7,17 +7,17 @@
 
     <fragment
         android:id="@+id/newsFragment"
-        android:name="com.example.diskoperindag.fragments.NewsFragment"
+        android:name="com.ongghuen.diskoperindag.fragments.NewsFragment"
         android:label="News Fragment"
         tools:layout="@layout/fragment_news"></fragment>
     <fragment
         android:id="@+id/savedFragment"
-        android:name="com.example.diskoperindag.fragments.SavedFragment"
+        android:name="com.ongghuen.diskoperindag.fragments.SavedFragment"
         android:label="fragment_saved"
         tools:layout="@layout/fragment_saved" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.diskoperindag.fragments.ProfileFragment"
+        android:name="com.ongghuen.diskoperindag.fragments.ProfileFragment"
         android:label="fragment_forms"
         tools:layout="@layout/fragment_profile" />
 </navigation>

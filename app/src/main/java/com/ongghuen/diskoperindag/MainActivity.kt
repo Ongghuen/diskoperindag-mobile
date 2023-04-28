@@ -1,4 +1,4 @@
-package com.example.diskoperindag
+package com.ongghuen.diskoperindag
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -7,7 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
 import android.widget.Toast
-import com.example.diskoperindag.databinding.ActivityMainBinding
+import com.ongghuen.diskoperindag.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 

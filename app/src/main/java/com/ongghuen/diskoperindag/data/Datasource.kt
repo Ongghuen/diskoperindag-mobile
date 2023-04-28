@@ -1,7 +1,7 @@
-package com.example.diskoperindag.data
+package com.ongghuen.diskoperindag.data
 
-import com.example.diskoperindag.R
-import com.example.diskoperindag.model.News
+import com.ongghuen.diskoperindag.R
+import com.ongghuen.diskoperindag.model.News
 
 class Datasource {
     fun loadAffirmation(): List<News>{

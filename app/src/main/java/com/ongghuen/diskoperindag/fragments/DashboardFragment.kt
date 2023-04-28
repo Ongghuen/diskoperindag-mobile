@@ -1,4 +1,4 @@
-package com.example.diskoperindag.fragments
+package com.ongghuen.diskoperindag.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -14,11 +14,11 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.diskoperindag.R
-import com.example.diskoperindag.R.*
-import com.example.diskoperindag.adapter.NewsAdapter
-import com.example.diskoperindag.data.Datasource
-import com.example.diskoperindag.databinding.FragmentDashboardBinding
+import com.ongghuen.diskoperindag.R
+import com.ongghuen.diskoperindag.R.*
+import com.ongghuen.diskoperindag.adapter.NewsAdapter
+import com.ongghuen.diskoperindag.data.Datasource
+import com.ongghuen.diskoperindag.databinding.FragmentDashboardBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class DashboardFragment : Fragment() {

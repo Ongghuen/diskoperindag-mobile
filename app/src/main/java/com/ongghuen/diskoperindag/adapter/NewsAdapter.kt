@@ -1,4 +1,4 @@
-package com.example.diskoperindag.adapter
+package com.ongghuen.diskoperindag.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.diskoperindag.R
-import com.example.diskoperindag.model.News
+import com.ongghuen.diskoperindag.R
+import com.ongghuen.diskoperindag.model.News
 
 class NewsAdapter(private val context: Context?, private val data: List<News>) :
     RecyclerView.Adapter<NewsAdapter.NewsViewHolder>() {
