@@ -60,15 +60,16 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun logout() {
+        prefs.edit().clear().apply()
+        _isLoggedIn.value = false
+
         _status.value = UserLoading.FINISH
         viewModelScope.launch {
             try {
                 val result =
                     DiskoperindagApiService.UserApi.retrofitService.logout(_currentUser.value!!.token)
                 _currentUser.value?.token = ""
-                _isLoggedIn.value = false
 
-                prefs.edit().clear().apply()
 
                 Log.d("USERVIEWMODEL OKCEPTION", result.toString())
             } catch (e: Exception) {
