@@ -1,5 +1,6 @@
 package com.ongghuen.diskoperindag.fragments
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,6 +16,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
 import com.ongghuen.diskoperindag.R
 import com.ongghuen.diskoperindag.R.*
@@ -41,7 +43,18 @@ class DashboardFragment : Fragment() {
         val nestedNavHostFragment =
             childFragmentManager.findFragmentById(R.id.fg_container) as? NavHostFragment
         navController = nestedNavHostFragment?.navController!!
-        binding.bottomNavigation.setupWithNavController(navController)
+
+
+        val prefs = activity?.getSharedPreferences("diskoperindag", Context.MODE_PRIVATE)
+        val isLoggedIn = prefs!!.getBoolean("IsLoggedIn", false)
+        Log.d("VALUECHECK", isLoggedIn.toString())
+
+        binding.apply {
+            toolbar.setupWithNavController(navController)
+        }
+
+        setupSmoothBottomBar()
+
 
         userViewModel.isLoggedIn.observe(viewLifecycleOwner) { isLoggedIn ->
             if (!isLoggedIn) {
@@ -51,6 +64,12 @@ class DashboardFragment : Fragment() {
         }
 
         return binding.root
+    }
+    fun setupSmoothBottomBar() {
+        var popupMenu: PopupMenu = PopupMenu(requireContext(), null)
+        popupMenu.inflate(R.menu.bottom_nav_menu)
+        var menu: Menu = popupMenu.menu
+        binding.bottomNavigation.setupWithNavController(menu, navController)
     }
 
 }

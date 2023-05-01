@@ -5,7 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ongghuen.diskoperindag.R
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.ongghuen.diskoperindag.databinding.FragmentNewsDetailBinding
 
 class NewsDetailFragment : Fragment() {
@@ -20,6 +21,13 @@ class NewsDetailFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentNewsDetailBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        arguments?.let {
+            binding.newsTitleDetail.text = it.getString("kontol")
+        }
     }
 
 }

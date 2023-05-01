@@ -8,6 +8,7 @@ data class User(val user: UserDetail?, var token: String = "", var msg: String =
     data class UserDetail(
         val id: Int = 0,
         val name: String = "",
-        val email: String = ""
+        val email: String = "",
+        val password: String = ""
     )
 }

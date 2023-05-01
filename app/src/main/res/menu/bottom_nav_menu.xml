@@ -3,17 +3,17 @@
 
     <item
         android:id="@+id/newsFragment"
-        android:title="Home"
+        android:title="Beranda"
         android:icon="@drawable/ic_home"/>
 
     <item
         android:id="@+id/savedFragment"
-        android:title="Saved"
+        android:title="Tersimpan"
         android:icon="@drawable/ic_archive"/>
 
     <item
         android:id="@+id/profileFragment"
-        android:title="Profile"
+        android:title="Profil"
         android:icon="@drawable/ic_profile"/>
 
 </menu>

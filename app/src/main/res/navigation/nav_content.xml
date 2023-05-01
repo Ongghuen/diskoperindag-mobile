@@ -8,16 +8,40 @@
     <fragment
         android:id="@+id/newsFragment"
         android:name="com.ongghuen.diskoperindag.fragments.NewsFragment"
-        android:label="News Fragment"
-        tools:layout="@layout/fragment_news"></fragment>
+        android:label="Beranda Berita"
+        tools:layout="@layout/fragment_news">
+        <action
+            android:id="@+id/action_newsFragment_to_newsDetailFragment"
+            app:destination="@id/newsDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/savedFragment"
         android:name="com.ongghuen.diskoperindag.fragments.SavedFragment"
-        android:label="fragment_saved"
+        android:label="Berita Tersimpan"
         tools:layout="@layout/fragment_saved" />
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.ongghuen.diskoperindag.fragments.ProfileFragment"
-        android:label="fragment_forms"
+        android:label="Profil Anda"
         tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/newsDetailFragment"
+        android:name="com.ongghuen.diskoperindag.fragments.NewsDetailFragment"
+        android:label="Detail Berita"
+        tools:layout="@layout/fragment_news_detail" >
+
+        <argument
+            android:name="kontol"
+            app:argType="string"
+            android:defaultValue="anjing" />
+
+        <action
+            android:id="@+id/action_newsDetailFragment_to_newsFragment"
+            app:destination="@id/newsFragment"
+            app:popUpTo="@id/newsDetailFragment"
+            app:popUpToInclusive="true" />
+
+    </fragment>
+
 </navigation>
