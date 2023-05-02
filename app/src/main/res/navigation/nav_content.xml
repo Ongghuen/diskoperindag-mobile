@@ -32,9 +32,24 @@
         tools:layout="@layout/fragment_news_detail" >
 
         <argument
-            android:name="kontol"
+            android:name="image"
             app:argType="string"
-            android:defaultValue="anjing" />
+            android:defaultValue="image" />
+
+        <argument
+            android:name="title"
+            app:argType="string"
+            android:defaultValue="title" />
+
+        <argument
+            android:name="subTitle"
+            app:argType="string"
+            android:defaultValue="sub title" />
+
+        <argument
+            android:name="body"
+            app:argType="string"
+            android:defaultValue="body" />
 
         <action
             android:id="@+id/action_newsDetailFragment_to_newsFragment"

@@ -1,3 +1,12 @@
 package com.ongghuen.diskoperindag.model
 
-data class News(val stringRes: Int)
+import com.squareup.moshi.JsonClass
+
+@JsonClass(generateAdapter = true)
+data class News(
+    val id: Int,
+    val image: String,
+    val judul: String,
+    val subjudul: String,
+    val body: String,
+)

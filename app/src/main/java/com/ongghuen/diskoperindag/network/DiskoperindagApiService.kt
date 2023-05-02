@@ -1,5 +1,6 @@
 package com.ongghuen.diskoperindag.network
 
+import com.ongghuen.diskoperindag.model.News
 import com.ongghuen.diskoperindag.model.User
 import com.ongghuen.diskoperindag.model.UserRequest
 import com.squareup.moshi.Moshi
@@ -11,7 +12,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
 
-const val BASE_URL = "http://192.168.100.15:8000/api/"
+const val BASE_URL = "http://192.168.100.2:8000/api/"
 
 private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 private val retrofit =
@@ -28,8 +29,8 @@ class DiskoperindagApiService {
         @GET("logout")
         suspend fun logout(@Header("Authorization") token: String)
 
-        @GET("hello")
-        suspend fun getSomething(): String
+        @GET("news")
+        suspend fun getNews(): List<News>
     }
 
     object UserApi {

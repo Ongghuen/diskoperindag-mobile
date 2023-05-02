@@ -1,16 +1,21 @@
 package com.ongghuen.diskoperindag.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ongghuen.diskoperindag.adapter.NewsAdapter
-import com.ongghuen.diskoperindag.data.Datasource
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import com.ongghuen.diskoperindag.adapters.NewsAdapter
 import com.ongghuen.diskoperindag.databinding.FragmentNewsBinding
+import com.ongghuen.diskoperindag.model.News
+import com.ongghuen.diskoperindag.viewmodel.NewsViewModel
 
 class NewsFragment : Fragment() {
 
+    private val newsViewModel: NewsViewModel by activityViewModels()
     private var _binding: FragmentNewsBinding? = null
     private val binding get() = _binding!!
 
@@ -19,17 +24,23 @@ class NewsFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentNewsBinding.inflate(inflater, container, false)
-        // Inflate the layout for this fragment
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val data = Datasource().loadAffirmation()
+        val lol: List<News> = listOf(News(1, "wakeup.img", "Eden", "Wake Up", "ok i guesss"))
+        newsViewModel.news.observe(viewLifecycleOwner) { news ->
+            binding.newsRecyclerView.adapter = NewsAdapter(newsViewModel.news.value ?: lol)
+            binding.newsRecyclerView.setHasFixedSize(true)
+        }
 
-        binding.newsRecyclerView.adapter = NewsAdapter(context, data)
-        binding.newsRecyclerView.setHasFixedSize(true)
+        binding.swipeRefresh.setOnRefreshListener {
+            Log.d("ngontol", "onRefresh called from SwipeRefreshLayout")
+            newsViewModel.getNews()
+            binding.swipeRefresh.setRefreshing(false)
+        }
     }
 
     override fun onDestroy() {

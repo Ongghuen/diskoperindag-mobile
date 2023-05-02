@@ -1,11 +1,10 @@
 package com.ongghuen.diskoperindag.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.ongghuen.diskoperindag.R
+import androidx.fragment.app.Fragment
 import com.ongghuen.diskoperindag.databinding.FragmentRegisterBinding
 
 class RegisterFragment : Fragment() {

@@ -19,6 +19,7 @@
             android:id="@+id/newsImage"
             android:layout_width="150dp"
             android:layout_height="150dp"
+            android:scaleType="centerCrop"
             android:contentDescription="@null"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -31,8 +32,9 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:padding="8dp"
+            android:lines="1"
             android:text="Test"
-            android:textColor="@color/black"
+            android:textColor="?colorOnPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/newsImage"
@@ -40,30 +42,31 @@
             />
 
         <TextView
-            android:id="@+id/newsTitle"
+            android:id="@+id/subTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:padding="8dp"
             android:text="Something"
+            android:lines="1"
+            android:ellipsize="end"
             android:textColor="?android:textColorSecondary"
             app:layout_constraintStart_toEndOf="@+id/newsImage"
             app:layout_constraintTop_toBottomOf="@+id/title" />
 
         <TextView
-            android:id="@+id/sub_title"
+            android:id="@+id/body"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
-            android:ellipsize="end"
             android:padding="8dp"
-            android:singleLine="true"
-            android:text="Something again"
+            android:lines="3"
+            android:ellipsize="end"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/newsImage"
-            app:layout_constraintTop_toBottomOf="@+id/newsTitle" />
+            app:layout_constraintTop_toBottomOf="@+id/subTitle" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

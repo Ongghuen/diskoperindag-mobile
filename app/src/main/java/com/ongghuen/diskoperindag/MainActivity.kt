@@ -1,14 +1,7 @@
 package com.ongghuen.diskoperindag
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import android.widget.Button
-import android.widget.Toast
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.appcompat.app.AppCompatActivity
 import com.ongghuen.diskoperindag.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

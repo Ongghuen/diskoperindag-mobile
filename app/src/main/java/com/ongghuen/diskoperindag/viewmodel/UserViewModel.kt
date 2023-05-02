@@ -10,7 +10,6 @@ import com.ongghuen.diskoperindag.model.User
 import com.ongghuen.diskoperindag.model.UserRequest
 import com.ongghuen.diskoperindag.network.DiskoperindagApiService
 import kotlinx.coroutines.launch
-import java.lang.Exception
 
 enum class UserLoading {
     INIT, LOADING, SUCCESS, FINISH, ERROR
