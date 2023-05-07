@@ -57,7 +57,8 @@ class DashboardFragment : Fragment() {
 
         return binding.root
     }
-    fun setupSmoothBottomBar() {
+
+    private fun setupSmoothBottomBar() {
         var popupMenu: PopupMenu = PopupMenu(requireContext(), null)
         popupMenu.inflate(R.menu.bottom_nav_menu)
         var menu: Menu = popupMenu.menu

@@ -1,6 +1,8 @@
 package com.ongghuen.diskoperindag.fragments
 
+import android.content.Intent
 import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -28,7 +30,8 @@ class LoginFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+        super.
+        onViewCreated(view, savedInstanceState)
 
         viewModel.isLoggedIn.observe(viewLifecycleOwner) { isLoggedIn ->
             if (isLoggedIn) {
@@ -73,8 +76,8 @@ class LoginFragment : Fragment() {
         }
 
         binding.btnRegister.setOnClickListener {
-            val toRegister = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
-            findNavController().navigate(toRegister)
+            val toRegister = Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + "0823-3046-3756"))
+            startActivity(toRegister)
         }
     }
 

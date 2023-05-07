@@ -86,7 +86,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
 
     init {
-        if (prefs.getBoolean("isLoggedIn", false) == true){
+        if (prefs.getBoolean("isLoggedIn", false)){
             _isLoggedIn.value = true
             login(prefs.getString("email", "").toString(), prefs.getString("password", "").toString())
         }else{

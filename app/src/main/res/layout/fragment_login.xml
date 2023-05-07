@@ -99,8 +99,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="Tidak mempunyai akun?"
-            app:layout_constraintEnd_toStartOf="@+id/btn_register"
             app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_login" />
 
@@ -108,12 +108,13 @@
             android:id="@+id/btn_register"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:text="Daftar"
+            android:text="Hubungi Admin"
+            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/dont_have_account"
-            app:layout_constraintTop_toTopOf="@+id/dont_have_account" />
+            app:layout_constraintTop_toBottomOf="@+id/dont_have_account"
+            app:layout_constraintStart_toStartOf="parent"
+            />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.ongghuen.diskoperindag.fragments.ProfileFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/tvProfile"
         android:textSize="24sp"
