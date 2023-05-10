@@ -27,13 +27,14 @@
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:padding="8dp"
             android:lines="1"
             android:text="Test"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/newsImage"
@@ -42,7 +43,7 @@
 
         <TextView
             android:id="@+id/subTitle"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:padding="8dp"
@@ -50,6 +51,7 @@
             android:lines="1"
             android:ellipsize="end"
             android:textColor="?android:textColorSecondary"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/newsImage"
             app:layout_constraintTop_toBottomOf="@+id/title" />
 

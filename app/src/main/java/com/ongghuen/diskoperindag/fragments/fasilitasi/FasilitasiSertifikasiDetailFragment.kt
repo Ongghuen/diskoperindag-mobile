@@ -6,13 +6,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ongghuen.diskoperindag.R
+import com.ongghuen.diskoperindag.databinding.FragmentFasilitasiSertifikasiDetailBinding
 
 class FasilitasiSertifikasiDetailFragment : Fragment() {
+
+    private var _binding: FragmentFasilitasiSertifikasiDetailBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fasilitasi_sertifikasi_detail, container, false)
+        _binding = FragmentFasilitasiSertifikasiDetailBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        arguments?.let {
+            binding.noSertifikasi.text = it.getString("no_sertifikat")
+            binding.nama.text = it.getString("nama")
+            binding.tanggalTerbit.text = it.getString("tanggal_terbit")
+            binding.kadaluarsaPenyelenggara.text = it.getString("kadaluarsa_penyelenggara")
+            binding.keterangan.text = it.getString("keterangan")
+        }
     }
 }

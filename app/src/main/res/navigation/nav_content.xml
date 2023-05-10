@@ -99,12 +99,20 @@
         android:id="@+id/fasilitasiPelatihanFragment"
         android:name="com.ongghuen.diskoperindag.fragments.fasilitasi.FasilitasiPelatihanFragment"
         android:label="Fasilitasi Pelatihan Anda"
-        tools:layout="@layout/fragment_fasilitasi_pelatihan" />
+        tools:layout="@layout/fragment_fasilitasi_pelatihan" >
+        <action
+            android:id="@+id/action_fasilitasiPelatihanFragment_to_fasilitasiPelatihanDetailFragment"
+            app:destination="@id/fasilitasiPelatihanDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/fasilitasiSertifikasiFragment"
         android:name="com.ongghuen.diskoperindag.fragments.fasilitasi.FasilitasiSertifikasiFragment"
         android:label="Fasilitasi Sertifikasi Anda"
-        tools:layout="@layout/fragment_fasilitasi_sertifikasi" />
+        tools:layout="@layout/fragment_fasilitasi_sertifikasi" >
+        <action
+            android:id="@+id/action_fasilitasiSertifikasiFragment_to_fasilitasiSertifikasiDetailFragment"
+            app:destination="@id/fasilitasiSertifikasiDetailFragment" />
+    </fragment>
     <fragment
         android:id="@+id/profileDetailFragment"
         android:name="com.ongghuen.diskoperindag.fragments.mainscreen.ProfileDetailFragment"
@@ -115,5 +123,47 @@
         android:name="com.ongghuen.diskoperindag.fragments.mainscreen.SuratFragment"
         android:label="Kirim Surat"
         tools:layout="@layout/fragment_surat" />
+    <fragment
+        android:id="@+id/fasilitasiPelatihanDetailFragment"
+        android:name="com.ongghuen.diskoperindag.fragments.fasilitasi.FasilitasiPelatihanDetailFragment"
+        android:label="Detail Pelatihan Anda"
+        tools:layout="@layout/fragment_fasilitasi_pelatihan_detail" >
+        <argument
+            android:name="nama"
+            app:argType="string" />
+        <argument android:name="penyelenggara"
+            app:argType="string" />
+        <argument
+            android:name="tanggal_pelaksanaan"
+            app:argType="string" />
+        <argument
+            android:name="tempat"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/fasilitasiSertifikasiDetailFragment"
+        android:name="com.ongghuen.diskoperindag.fragments.fasilitasi.FasilitasiSertifikasiDetailFragment"
+        android:label="Detail Sertifikasi Anda"
+        tools:layout="@layout/fragment_fasilitasi_sertifikasi_detail" >
+        <argument
+            android:name="no_sertifikat"
+            android:defaultValue="No Sertifikat"
+            app:argType="string" />
+        <argument
+            android:name="nama"
+            android:defaultValue="Nama"
+            app:argType="string" />
+        <argument android:name="tanggal_terbit"
+            android:defaultValue="Tanggal Terbit"
+            app:argType="string" />
+        <argument
+            android:name="kadaluarsa_penyelenggara"
+            android:defaultValue="Tanggal Kadaluarsa"
+            app:argType="string" />
+        <argument
+            android:name="keterangan"
+            android:defaultValue="Keterangan"
+            app:argType="string" />
+    </fragment>
 
 </navigation>

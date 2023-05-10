@@ -6,6 +6,18 @@
     android:layout_height="match_parent">
 
     <!-- First input text field -->
+
+    <Button
+        android:id="@+id/uploadButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="68dp"
+        android:text="Upload"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/uploadButton"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayout3" />
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/textInputLayout1"
         android:layout_width="0dp"
@@ -52,26 +64,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintWidth_percent="0.8">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editText3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter text 3" />
-
-    </com.google.android.material.textfield.TextInputLayout>
+        app:layout_constraintWidth_percent="0.8"/>
 
     <!-- Upload file picker button -->
     <Button
         android:id="@+id/uploadButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Upload"
-        app:layout_constraintTop_toBottomOf="@id/textInputLayout3"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintHorizontal_bias="0.342"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textInputLayout3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

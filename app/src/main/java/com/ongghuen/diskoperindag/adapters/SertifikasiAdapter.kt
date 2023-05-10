@@ -4,10 +4,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.ongghuen.diskoperindag.R
+import com.ongghuen.diskoperindag.fragments.fasilitasi.FasilitasiPelatihanFragmentDirections
+import com.ongghuen.diskoperindag.fragments.fasilitasi.FasilitasiSertifikasiFragmentDirections
 import com.ongghuen.diskoperindag.model.Sertifikasi
 
 class SertifikasiAdapter(private val data: List<Sertifikasi>) :
@@ -38,6 +41,14 @@ class SertifikasiAdapter(private val data: List<Sertifikasi>) :
 
         holder.namaSertifikasi.text = item.nama
         holder.namaSertifikasi.setOnClickListener {
+            val toDetail = FasilitasiSertifikasiFragmentDirections.actionFasilitasiSertifikasiFragmentToFasilitasiSertifikasiDetailFragment(
+                noSertifikat = item.no_sertifikat,
+                nama = item.nama,
+                tanggalTerbit = item.tanggal_terbit,
+                kadaluarsaPenyelenggara = item.kadaluarsa_penyelenggara,
+                keterangan = item.keterangan
+            )
+            holder.view.findNavController().navigate(toDetail)
         }
     }
 

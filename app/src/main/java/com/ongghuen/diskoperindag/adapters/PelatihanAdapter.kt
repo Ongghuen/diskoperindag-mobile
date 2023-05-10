@@ -4,10 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.ongghuen.diskoperindag.R
+import com.ongghuen.diskoperindag.fragments.fasilitasi.FasilitasiPelatihanFragmentDirections
 import com.ongghuen.diskoperindag.model.Pelatihan
 
 class PelatihanAdapter(private val data: List<Pelatihan>) :
@@ -38,6 +40,14 @@ class PelatihanAdapter(private val data: List<Pelatihan>) :
 
         holder.namaPelatihan.text = item.nama
         holder.namaPelatihan.setOnClickListener {
+            val toDetail =
+                FasilitasiPelatihanFragmentDirections.actionFasilitasiPelatihanFragmentToFasilitasiPelatihanDetailFragment(
+                    nama = item.nama,
+                    penyelenggara = item.penyelenggara,
+                    tanggalPelaksanaan = item.tanggal_pelaksanaan,
+                    tempat = item.tempat
+                )
+            holder.view.findNavController().navigate(toDetail)
         }
     }
 
