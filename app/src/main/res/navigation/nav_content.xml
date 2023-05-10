@@ -23,7 +23,17 @@
         android:id="@+id/profileFragment"
         android:name="com.ongghuen.diskoperindag.fragments.ProfileFragment"
         android:label="Profil Anda"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+            android:id="@+id/action_profileFragment_to_fasilitasiBantuanFragment"
+            app:destination="@id/fasilitasiBantuanFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_fasilitasiPelatihanFragment"
+            app:destination="@id/fasilitasiPelatihanFragment" />
+        <action
+            android:id="@+id/action_profileFragment_to_fasilitasiSertifikasiFragment"
+            app:destination="@id/fasilitasiSertifikasiFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/newsDetailFragment"
@@ -58,5 +68,29 @@
 
     </fragment>
     <action android:id="@+id/action_global_newsDetailFragment" app:destination="@id/newsDetailFragment" />
+    <fragment
+        android:id="@+id/fasilitasiBantuanFragment"
+        android:name="com.ongghuen.diskoperindag.fragments.fasilitasi.FasilitasiBantuanFragment"
+        android:label="Fasilitasi Bantuan Anda"
+        tools:layout="@layout/fragment_fasilitasi_bantuan" >
+        <action
+            android:id="@+id/action_fasilitasiBantuanFragment_to_fasilitasiBantuanDetailFragment"
+            app:destination="@id/fasilitasiBantuanDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/fasilitasiBantuanDetailFragment"
+        android:name="com.ongghuen.diskoperindag.fragments.fasilitasi.FasilitasiBantuanDetailFragment"
+        android:label="Detail Bantuan Anda"
+        tools:layout="@layout/fragment_fasilitasi_bantuan_detail" />
+    <fragment
+        android:id="@+id/fasilitasiPelatihanFragment"
+        android:name="com.ongghuen.diskoperindag.fragments.fasilitasi.FasilitasiPelatihanFragment"
+        android:label="Fasilitasi Pelatihan Anda"
+        tools:layout="@layout/fragment_fasilitasi_pelatihan" />
+    <fragment
+        android:id="@+id/fasilitasiSertifikasiFragment"
+        android:name="com.ongghuen.diskoperindag.fragments.fasilitasi.FasilitasiSertifikasiFragment"
+        android:label="Fasilitasi Sertifikasi Anda"
+        tools:layout="@layout/fragment_fasilitasi_sertifikasi" />
 
 </navigation>

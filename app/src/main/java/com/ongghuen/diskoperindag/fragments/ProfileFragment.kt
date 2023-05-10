@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
 import com.ongghuen.diskoperindag.databinding.FragmentProfileBinding
 import com.ongghuen.diskoperindag.viewmodel.UserViewModel
 
@@ -26,9 +27,23 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         viewModel.currentUser.observe(viewLifecycleOwner, { user ->
             binding.tvProfile.text = "My name is ${user!!.user?.name} and my token is ${user.token}"
         })
+
+        binding.btnBantuan.setOnClickListener {
+            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToFasilitasiBantuanFragment())
+        }
+
+        binding.btnSertifikasi.setOnClickListener {
+            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToFasilitasiSertifikasiFragment())
+        }
+
+        binding.btnPelatihan.setOnClickListener {
+            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToFasilitasiPelatihanFragment())
+        }
+
         binding.btnLogout.setOnClickListener {
             viewModel.logout()
         }
