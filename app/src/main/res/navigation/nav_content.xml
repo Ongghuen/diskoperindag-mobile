@@ -23,7 +23,7 @@
         android:id="@+id/profileFragment"
         android:name="com.ongghuen.diskoperindag.fragments.ProfileFragment"
         android:label="Profil Anda"
-        tools:layout="@layout/fragment_profile" >
+        tools:layout="@layout/fragment_profile">
         <action
             android:id="@+id/action_profileFragment_to_fasilitasiBantuanFragment"
             app:destination="@id/fasilitasiBantuanFragment" />
@@ -39,40 +39,42 @@
         android:id="@+id/newsDetailFragment"
         android:name="com.ongghuen.diskoperindag.fragments.NewsDetailFragment"
         android:label="Detail Berita"
-        tools:layout="@layout/fragment_news_detail" >
+        tools:layout="@layout/fragment_news_detail">
 
         <argument
             android:name="id"
-            app:argType="integer"
-            android:defaultValue="-1" />
+            android:defaultValue="-1"
+            app:argType="integer" />
 
         <argument
             android:name="image"
-            app:argType="string"
-            android:defaultValue="image" />
+            android:defaultValue="image"
+            app:argType="string" />
 
         <argument
             android:name="title"
-            app:argType="string"
-            android:defaultValue="title" />
+            android:defaultValue="title"
+            app:argType="string" />
 
         <argument
             android:name="subTitle"
-            app:argType="string"
-            android:defaultValue="sub title" />
+            android:defaultValue="sub title"
+            app:argType="string" />
 
         <argument
             android:name="body"
-            app:argType="string"
-            android:defaultValue="body" />
+            android:defaultValue="body"
+            app:argType="string" />
 
     </fragment>
-    <action android:id="@+id/action_global_newsDetailFragment" app:destination="@id/newsDetailFragment" />
+    <action
+        android:id="@+id/action_global_newsDetailFragment"
+        app:destination="@id/newsDetailFragment" />
     <fragment
         android:id="@+id/fasilitasiBantuanFragment"
         android:name="com.ongghuen.diskoperindag.fragments.fasilitasi.FasilitasiBantuanFragment"
         android:label="Fasilitasi Bantuan Anda"
-        tools:layout="@layout/fragment_fasilitasi_bantuan" >
+        tools:layout="@layout/fragment_fasilitasi_bantuan">
         <action
             android:id="@+id/action_fasilitasiBantuanFragment_to_fasilitasiBantuanDetailFragment"
             app:destination="@id/fasilitasiBantuanDetailFragment" />
@@ -81,7 +83,12 @@
         android:id="@+id/fasilitasiBantuanDetailFragment"
         android:name="com.ongghuen.diskoperindag.fragments.fasilitasi.FasilitasiBantuanDetailFragment"
         android:label="Detail Bantuan Anda"
-        tools:layout="@layout/fragment_fasilitasi_bantuan_detail" />
+        tools:layout="@layout/fragment_fasilitasi_bantuan_detail">
+        <argument
+            android:name="id"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/fasilitasiPelatihanFragment"
         android:name="com.ongghuen.diskoperindag.fragments.fasilitasi.FasilitasiPelatihanFragment"

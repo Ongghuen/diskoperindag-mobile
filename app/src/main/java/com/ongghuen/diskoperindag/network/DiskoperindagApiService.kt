@@ -1,5 +1,7 @@
 package com.ongghuen.diskoperindag.network
 
+import com.ongghuen.diskoperindag.model.Bantuan
+import com.ongghuen.diskoperindag.model.BantuanDetail
 import com.ongghuen.diskoperindag.model.News
 import com.ongghuen.diskoperindag.model.User
 import com.ongghuen.diskoperindag.model.UserRequest
@@ -44,6 +46,12 @@ class DiskoperindagApiService {
 
         @DELETE("news/delete/{id}")
         suspend fun deleteNewsFavorite(@Header("Authorization") token: String, @Path("id") id: String)
+
+        @GET("fasilitasi/bantuan")
+        suspend fun getBantuan(@Header("Authorization") token: String): List<Bantuan>
+
+        @GET("fasilitasi/bantuan/{id}")
+        suspend fun getBantuanDetail(@Header("Authorization") token: String, @Path("id") id: String): BantuanDetail
     }
 
     object UserApi {
