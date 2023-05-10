@@ -1,12 +1,15 @@
 package com.ongghuen.diskoperindag.fragments.fasilitasi
 
+import android.icu.lang.UCharacter.VerticalOrientation
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ongghuen.diskoperindag.R
+import com.ongghuen.diskoperindag.adapters.BantuanDetailAdapter
 import com.ongghuen.diskoperindag.databinding.FragmentFasilitasiBantuanDetailBinding
 import com.ongghuen.diskoperindag.viewmodel.FasilitasiViewModel
 
@@ -28,5 +31,12 @@ class FasilitasiBantuanDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         fasilitasiViewModel.getBantuanDetail(arguments?.getInt("id").toString())
+
+        fasilitasiViewModel.bantuanDetail.observe(viewLifecycleOwner) { detail ->
+            binding.namaBantuan.text = detail.nama_bantuan
+            binding.rvItemBantuan.adapter = BantuanDetailAdapter(detail.item_bantuan)
+            binding.rvItemBantuan.layoutManager = LinearLayoutManager(requireContext())
+            binding.rvItemBantuan.setHasFixedSize(true)
+        }
     }
 }

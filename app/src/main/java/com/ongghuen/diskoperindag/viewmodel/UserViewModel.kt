@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.util.Log
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.ongghuen.diskoperindag.model.User
@@ -20,13 +21,13 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     val prefs = getApplication<Application>().getSharedPreferences("diskoperindag", Context.MODE_PRIVATE)
 
     private var _currentUser = MutableLiveData<User>()
-    val currentUser: MutableLiveData<User> get() = _currentUser
+    val currentUser: LiveData<User> get() = _currentUser
 
     private var _isLoggedIn = MutableLiveData<Boolean>()
-    val isLoggedIn: MutableLiveData<Boolean> get() = _isLoggedIn
+    val isLoggedIn: LiveData<Boolean> get() = _isLoggedIn
 
     private var _status = MutableLiveData(UserLoading.INIT)
-    val status: MutableLiveData<UserLoading> get() = _status
+    val status: LiveData<UserLoading> get() = _status
 
     fun login(email: String, password: String) {
 

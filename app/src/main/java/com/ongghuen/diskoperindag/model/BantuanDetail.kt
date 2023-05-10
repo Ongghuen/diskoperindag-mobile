@@ -10,9 +10,6 @@ data class BantuanDetail(
     val koordinator: String,
     val sumber_anggaran: String,
     val tahun_pemberian: String,
-    val user_id: Int,
-    val created_at: String,
-    val updated_at: String,
     val item_bantuan: List<ItemBantuan>
 ) {
     @JsonClass(generateAdapter = true)
@@ -21,8 +18,10 @@ data class BantuanDetail(
         val nama_item: String,
         val stok: Int,
         val deskripsi: String,
-        val created_at: String,
-        val updated_at: String
-    )
+        val pivot: Pivot
+    ){
+        @JsonClass(generateAdapter = true)
+        data class Pivot(val kuantitas: Int)
+    }
 }
 

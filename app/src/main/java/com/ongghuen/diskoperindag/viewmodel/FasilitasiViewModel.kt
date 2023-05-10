@@ -20,7 +20,7 @@ class FasilitasiViewModel(application: Application) : AndroidViewModel(applicati
     val bantuan: LiveData<List<Bantuan>> get() = _bantuan
 
     private var _bantuanDetail = MutableLiveData<BantuanDetail>()
-    val bantuanDetail: LiveData<BantuanDetail> get() = _bantuanDetail
+    val bantuanDetail: MutableLiveData<BantuanDetail> get() = _bantuanDetail
 
 //    private var _sertifikasi = MutableLiveData<List<Sertifikasi>>()
 //    val sertifikasi: LiveData<List<Sertifikasi>> get() = _sertifikasi
@@ -47,9 +47,12 @@ class FasilitasiViewModel(application: Application) : AndroidViewModel(applicati
     fun getBantuanDetail(id: String) {
         viewModelScope.launch {
             try {
-                val result = DiskoperindagApiService.UserApi.retrofitService.getBantuanDetail(prefs.getString("token", "")
-                    .toString(), id)
-                Log.d("CEPTION", "${result}")
+                val result = DiskoperindagApiService.UserApi.retrofitService.getBantuanDetail(
+                    "Bearer " + prefs.getString("token", "")
+                        .toString(), id
+                )
+                Log.d("CEPTION", "$result")
+                _bantuanDetail.value = result
             } catch (e: Exception) {
                 Log.d("ERRORCEPTION", e.toString())
             }

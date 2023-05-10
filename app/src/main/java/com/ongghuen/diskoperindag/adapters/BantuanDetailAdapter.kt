@@ -38,6 +38,7 @@ class BantuanDetailAdapter(private val data: List<BantuanDetail.ItemBantuan>) :
         val item = data[position]
 
         holder.namaItem.text = item.nama_item
+        holder.kuantitasItem.text = item.pivot.kuantitas.toString()
     }
 
     override fun getItemCount(): Int {
