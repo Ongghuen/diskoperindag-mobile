@@ -51,12 +51,7 @@
             app:argType="string"
             android:defaultValue="body" />
 
-        <action
-            android:id="@+id/action_newsDetailFragment_to_newsFragment"
-            app:destination="@id/newsFragment"
-            app:popUpTo="@id/newsDetailFragment"
-            app:popUpToInclusive="true" />
-
-    </fragment><action android:id="@+id/action_global_newsDetailFragment" app:destination="@id/newsDetailFragment"/>
+    </fragment>
+    <action android:id="@+id/action_global_newsDetailFragment" app:destination="@id/newsDetailFragment" />
 
 </navigation>

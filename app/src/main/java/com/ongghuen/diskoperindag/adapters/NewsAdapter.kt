@@ -1,5 +1,6 @@
 package com.ongghuen.diskoperindag.adapters
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,9 @@ import com.ongghuen.diskoperindag.NavContentDirections
 import com.ongghuen.diskoperindag.R
 import com.ongghuen.diskoperindag.fragments.NewsFragmentDirections
 import com.ongghuen.diskoperindag.model.News
+import com.ongghuen.diskoperindag.network.BASE
+import com.ongghuen.diskoperindag.network.BASE_URL
+import com.ongghuen.diskoperindag.network.DiskoperindagApiService
 
 class NewsAdapter(private val data: List<News>) :
     ListAdapter<News, NewsAdapter.NewsViewHolder>(DiffCallback) {
@@ -47,14 +51,22 @@ class NewsAdapter(private val data: List<News>) :
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         val item = data[position]
 
-        holder.image.load(item.image)
+        fun checkUrlImg(): String {
+            if (item.image.contains("http", ignoreCase = true)) {
+                return item.image
+            } else {
+                return "${BASE}/images/berita/" + item.image
+            }
+        }
+
+        holder.image.load(checkUrlImg())
         holder.title.text = item.judul
         holder.subTitle.text = item.subjudul
         holder.body.text = item.body
         holder.cardContainer.setOnClickListener {
             val navController = holder.view.findNavController()
             val toDetail = NavContentDirections.actionGlobalNewsDetailFragment(
-                image = item.image,
+                image = checkUrlImg(),
                 title = item.judul,
                 subTitle = item.subjudul,
                 body = item.body
