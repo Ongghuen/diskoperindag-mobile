@@ -8,9 +8,12 @@ import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 const val BASE = "http://192.168.100.28:8000"
 const val BASE_URL = "${BASE}/api/"
@@ -34,10 +37,13 @@ class DiskoperindagApiService {
         suspend fun getNews(): List<News>
 
         @GET("news/saved")
-        suspend fun getFavorite(@Header("Authorization") token: String): List<News>
+        suspend fun getNewsFavorite(@Header("Authorization") token: String): List<News>
 
         @POST("news/add")
-        suspend fun addFavorite(@Header("Authorization") token: String, id: String)
+        suspend fun addNewsFavorite(@Header("Authorization") token: String, @Query("berita_id") id: String)
+
+        @DELETE("news/delete/{id}")
+        suspend fun deleteNewsFavorite(@Header("Authorization") token: String, @Path("id") id: String)
     }
 
     object UserApi {

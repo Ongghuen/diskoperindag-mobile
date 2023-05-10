@@ -21,7 +21,6 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
     private var _favorites = MutableLiveData<List<News>>()
     val favorites: LiveData<List<News>> get() = _favorites
 
-
     fun getNews() {
 
         viewModelScope.launch {
@@ -36,12 +35,14 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
 
     }
 
-    fun getFavorite(token: String) {
-        Log.d("CEPTION", "${token}")
+    fun getFavorite() {
         viewModelScope.launch {
             try {
-                val favorites =
-                    DiskoperindagApiService.UserApi.retrofitService.getFavorite("Bearer " + token)
+                val favorites = DiskoperindagApiService.UserApi.retrofitService.getNewsFavorite(
+                    "Bearer " + prefs.getString(
+                        "token", ""
+                    )
+                )
                 Log.d("CEPTION", "${favorites}")
                 _favorites.value = favorites
             } catch (e: Exception) {
@@ -50,8 +51,38 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    fun addFavorite(id: String) {
+        viewModelScope.launch {
+            try {
+                DiskoperindagApiService.UserApi.retrofitService.addNewsFavorite(
+                    "Bearer " + prefs.getString(
+                        "token", ""
+                    ), id
+                )
+                getFavorite()
+            } catch (e: Exception) {
+                Log.d("ERRORCEPTION", e.toString())
+            }
+        }
+    }
+
+    fun deleteFavorite(id: String) {
+        viewModelScope.launch {
+            try {
+                DiskoperindagApiService.UserApi.retrofitService.deleteNewsFavorite(
+                    "Bearer " + prefs.getString(
+                        "token", ""
+                    ), id
+                )
+                getFavorite()
+            } catch (e: Exception) {
+                Log.d("ERRORCEPTION", e.toString())
+            }
+        }
+    }
+
     init {
         getNews()
-        getFavorite(prefs.getString("token", "").toString())
+        getFavorite()
     }
 }

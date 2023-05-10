@@ -32,6 +32,11 @@
         tools:layout="@layout/fragment_news_detail" >
 
         <argument
+            android:name="id"
+            app:argType="integer"
+            android:defaultValue="-1" />
+
+        <argument
             android:name="image"
             app:argType="string"
             android:defaultValue="image" />

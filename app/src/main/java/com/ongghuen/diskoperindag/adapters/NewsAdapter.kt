@@ -66,6 +66,7 @@ class NewsAdapter(private val data: List<News>) :
         holder.cardContainer.setOnClickListener {
             val navController = holder.view.findNavController()
             val toDetail = NavContentDirections.actionGlobalNewsDetailFragment(
+                id = item.id,
                 image = checkUrlImg(),
                 title = item.judul,
                 subTitle = item.subjudul,

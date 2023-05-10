@@ -14,7 +14,6 @@ import com.ongghuen.diskoperindag.viewmodel.UserViewModel
 
 class SavedFragment : Fragment() {
 
-    private val userViewModel: UserViewModel by activityViewModels()
     private val newsViewModel: NewsViewModel by activityViewModels()
     private var _binding: FragmentSavedBinding? = null
     private val binding get() = _binding!!
@@ -39,7 +38,7 @@ class SavedFragment : Fragment() {
         }
 
         binding.swipeRefresh.setOnRefreshListener {
-            newsViewModel.getNews()
+            newsViewModel.getFavorite()
             binding.swipeRefresh.setRefreshing(false)
         }
     }
