@@ -13,19 +13,100 @@
         android:layout_height="wrap_content"
         android:text="This is profile fragment"
         android:textAlignment="center"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="wrap_content"
+        android:id="@+id/btnProfile"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Logout"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Cek data lengkap anda"
+        android:paddingLeft="16dp"
+        android:paddingVertical="12dp"
+        android:gravity="left|center_vertical"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvProfile" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/dividerOne"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/btnProfile"
+    app:dividerInsetStart="12dp"
+    app:dividerInsetEnd="16dp"/>
+
+    <Button
+        android:id="@+id/btnBantuan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="List Bantuan Anda"
+        android:paddingLeft="16dp"
+        android:paddingVertical="12dp"
+        android:gravity="left|center_vertical"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dividerOne" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/dividerTwo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/btnBantuan"
+        app:dividerInsetStart="12dp"
+        app:dividerInsetEnd="16dp"/>
+
+    <Button
+        android:id="@+id/btnSertifikasi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="List Sertifikasi Anda"
+        android:paddingLeft="16dp"
+        android:paddingVertical="12dp"
+        android:gravity="left|center_vertical"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dividerTwo" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/dividerThree"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/btnSertifikasi"
+        app:dividerInsetStart="12dp"
+        app:dividerInsetEnd="16dp"/>
+
+    <Button
+        android:id="@+id/btnPelatihan"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="List Pelatihan Anda"
+        android:paddingLeft="16dp"
+        android:paddingVertical="12dp"
+        android:gravity="left|center_vertical"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dividerThree" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/dividerFour"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/btnPelatihan"
+        app:dividerInsetStart="12dp"
+        app:dividerInsetEnd="16dp"/>
+
+    <Button
+        android:id="@+id/btnLogout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:paddingLeft="16dp"
+        android:paddingVertical="12dp"
+        android:gravity="left|center_vertical"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dividerFour" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
