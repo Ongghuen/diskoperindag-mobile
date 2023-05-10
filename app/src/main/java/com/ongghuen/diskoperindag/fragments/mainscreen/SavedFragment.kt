@@ -1,42 +1,44 @@
-package com.ongghuen.diskoperindag.fragments
+package com.ongghuen.diskoperindag.fragments.mainscreen
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.ongghuen.diskoperindag.adapters.NewsAdapter
-import com.ongghuen.diskoperindag.databinding.FragmentNewsBinding
+import com.ongghuen.diskoperindag.databinding.FragmentSavedBinding
 import com.ongghuen.diskoperindag.model.News
 import com.ongghuen.diskoperindag.viewmodel.NewsViewModel
+import com.ongghuen.diskoperindag.viewmodel.UserViewModel
 
-class NewsFragment : Fragment() {
+class SavedFragment : Fragment() {
 
     private val newsViewModel: NewsViewModel by activityViewModels()
-    private var _binding: FragmentNewsBinding? = null
+    private var _binding: FragmentSavedBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentNewsBinding.inflate(inflater, container, false)
+        // Inflate the layout for this fragment
+        _binding = FragmentSavedBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val isItNullHuh: List<News> = listOf(News(1, "wakeup.img", "Eden", "Wake Up", "ok i guesss"))
-        newsViewModel.news.observe(viewLifecycleOwner) { news ->
-            binding.newsRecyclerView.adapter = NewsAdapter(newsViewModel.news.value ?: isItNullHuh)
-            binding.newsRecyclerView.setHasFixedSize(true)
+        val isItNullHuh: List<News> =
+            listOf(News(1, "wakeup.img", "Eden", "Wake Up", "ok i guesss"))
+        newsViewModel.favorites.observe(viewLifecycleOwner) { favorites ->
+            binding.savedRecyclerView.adapter = NewsAdapter(newsViewModel.favorites.value ?: isItNullHuh)
+            binding.savedRecyclerView.setHasFixedSize(true)
         }
 
         binding.swipeRefresh.setOnRefreshListener {
-            newsViewModel.getNews()
+            newsViewModel.getFavorite()
             binding.swipeRefresh.setRefreshing(false)
         }
     }

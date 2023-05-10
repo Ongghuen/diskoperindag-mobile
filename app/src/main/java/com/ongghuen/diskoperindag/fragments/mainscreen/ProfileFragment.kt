@@ -1,4 +1,4 @@
-package com.ongghuen.diskoperindag.fragments
+package com.ongghuen.diskoperindag.fragments.mainscreen
 
 import android.os.Bundle
 import android.view.LayoutInflater

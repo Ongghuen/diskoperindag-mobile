@@ -14,11 +14,8 @@ import coil.load
 import com.google.android.material.card.MaterialCardView
 import com.ongghuen.diskoperindag.NavContentDirections
 import com.ongghuen.diskoperindag.R
-import com.ongghuen.diskoperindag.fragments.NewsFragmentDirections
 import com.ongghuen.diskoperindag.model.News
 import com.ongghuen.diskoperindag.network.BASE
-import com.ongghuen.diskoperindag.network.BASE_URL
-import com.ongghuen.diskoperindag.network.DiskoperindagApiService
 
 class NewsAdapter(private val data: List<News>) :
     ListAdapter<News, NewsAdapter.NewsViewHolder>(DiffCallback) {

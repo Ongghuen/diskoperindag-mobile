@@ -3,6 +3,7 @@ package com.ongghuen.diskoperindag.network
 import com.ongghuen.diskoperindag.model.Bantuan
 import com.ongghuen.diskoperindag.model.BantuanDetail
 import com.ongghuen.diskoperindag.model.News
+import com.ongghuen.diskoperindag.model.Sertifikasi
 import com.ongghuen.diskoperindag.model.User
 import com.ongghuen.diskoperindag.model.UserRequest
 import com.squareup.moshi.Moshi
@@ -52,6 +53,9 @@ class DiskoperindagApiService {
 
         @GET("fasilitasi/bantuan/{id}")
         suspend fun getBantuanDetail(@Header("Authorization") token: String, @Path("id") id: String): BantuanDetail
+
+        @GET("fasilitasi/sertifikat")
+        suspend fun getSertifikasi(@Header("Authorization") token: String): List<Sertifikasi>
     }
 
     object UserApi {

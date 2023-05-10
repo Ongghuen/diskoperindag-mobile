@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.ongghuen.diskoperindag.fragments.ProfileFragment">
+    tools:context="com.ongghuen.diskoperindag.fragments.mainscreen.ProfileFragment">
 
     <TextView
         android:id="@+id/tvProfile"

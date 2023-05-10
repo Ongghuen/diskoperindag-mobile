@@ -24,7 +24,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.ongghuen.diskoperindag.fragments.LoginFragment"
+        android:name="com.ongghuen.diskoperindag.fragments.mainscreen.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login">
         <action
@@ -39,7 +39,7 @@
 
     <fragment
         android:id="@+id/dashboardFragment"
-        android:name="com.ongghuen.diskoperindag.fragments.DashboardFragment"
+        android:name="com.ongghuen.diskoperindag.fragments.mainscreen.DashboardFragment"
         android:label="activity_dashboard"
         tools:layout="@layout/fragment_dashboard">
         <action

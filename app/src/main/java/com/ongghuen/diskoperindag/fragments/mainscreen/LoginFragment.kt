@@ -1,4 +1,4 @@
-package com.ongghuen.diskoperindag.fragments
+package com.ongghuen.diskoperindag.fragments.mainscreen
 
 import android.content.Intent
 import android.graphics.Color
@@ -11,7 +11,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.ongghuen.diskoperindag.databinding.FragmentLoginBinding
 import com.ongghuen.diskoperindag.viewmodel.UserLoading
 import com.ongghuen.diskoperindag.viewmodel.UserViewModel

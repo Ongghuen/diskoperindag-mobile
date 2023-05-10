@@ -1,4 +1,4 @@
-package com.ongghuen.diskoperindag.fragments
+package com.ongghuen.diskoperindag.fragments.mainscreen
 
 import android.content.Context
 import android.os.Bundle
@@ -16,7 +16,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.ongghuen.diskoperindag.R
 import com.ongghuen.diskoperindag.databinding.FragmentDashboardBinding
-import com.ongghuen.diskoperindag.viewmodel.NewsViewModel
 import com.ongghuen.diskoperindag.viewmodel.UserViewModel
 
 class DashboardFragment : Fragment() {

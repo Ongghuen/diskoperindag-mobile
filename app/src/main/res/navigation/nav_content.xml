@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/newsFragment"
-        android:name="com.ongghuen.diskoperindag.fragments.NewsFragment"
+        android:name="com.ongghuen.diskoperindag.fragments.mainscreen.NewsFragment"
         android:label="Beranda Berita"
         tools:layout="@layout/fragment_news">
         <action
@@ -16,12 +16,12 @@
     </fragment>
     <fragment
         android:id="@+id/savedFragment"
-        android:name="com.ongghuen.diskoperindag.fragments.SavedFragment"
+        android:name="com.ongghuen.diskoperindag.fragments.mainscreen.SavedFragment"
         android:label="Berita Tersimpan"
         tools:layout="@layout/fragment_saved" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.ongghuen.diskoperindag.fragments.ProfileFragment"
+        android:name="com.ongghuen.diskoperindag.fragments.mainscreen.ProfileFragment"
         android:label="Profil Anda"
         tools:layout="@layout/fragment_profile">
         <action
@@ -37,7 +37,7 @@
 
     <fragment
         android:id="@+id/newsDetailFragment"
-        android:name="com.ongghuen.diskoperindag.fragments.NewsDetailFragment"
+        android:name="com.ongghuen.diskoperindag.fragments.mainscreen.NewsDetailFragment"
         android:label="Detail Berita"
         tools:layout="@layout/fragment_news_detail">
 
