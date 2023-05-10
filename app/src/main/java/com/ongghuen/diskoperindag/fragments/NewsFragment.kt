@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import com.ongghuen.diskoperindag.adapters.NewsAdapter
 import com.ongghuen.diskoperindag.databinding.FragmentNewsBinding
 import com.ongghuen.diskoperindag.model.News
@@ -30,14 +29,13 @@ class NewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val lol: List<News> = listOf(News(1, "wakeup.img", "Eden", "Wake Up", "ok i guesss"))
+        val isItNullHuh: List<News> = listOf(News(1, "wakeup.img", "Eden", "Wake Up", "ok i guesss"))
         newsViewModel.news.observe(viewLifecycleOwner) { news ->
-            binding.newsRecyclerView.adapter = NewsAdapter(newsViewModel.news.value ?: lol)
+            binding.newsRecyclerView.adapter = NewsAdapter(newsViewModel.news.value ?: isItNullHuh)
             binding.newsRecyclerView.setHasFixedSize(true)
         }
 
         binding.swipeRefresh.setOnRefreshListener {
-            Log.d("ngontol", "onRefresh called from SwipeRefreshLayout")
             newsViewModel.getNews()
             binding.swipeRefresh.setRefreshing(false)
         }

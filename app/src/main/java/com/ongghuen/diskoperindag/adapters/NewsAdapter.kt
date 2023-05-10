@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.google.android.material.card.MaterialCardView
+import com.ongghuen.diskoperindag.NavContentDirections
 import com.ongghuen.diskoperindag.R
 import com.ongghuen.diskoperindag.fragments.NewsFragmentDirections
 import com.ongghuen.diskoperindag.model.News
@@ -52,7 +53,7 @@ class NewsAdapter(private val data: List<News>) :
         holder.body.text = item.body
         holder.cardContainer.setOnClickListener {
             val navController = holder.view.findNavController()
-            val toDetail = NewsFragmentDirections.actionNewsFragmentToNewsDetailFragment(
+            val toDetail = NavContentDirections.actionGlobalNewsDetailFragment(
                 image = item.image,
                 title = item.judul,
                 subTitle = item.subjudul,

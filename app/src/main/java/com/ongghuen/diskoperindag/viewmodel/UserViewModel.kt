@@ -80,6 +80,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     fun saveSession(isLoggedIn: Boolean){
         with(prefs.edit()){
             putBoolean("isLoggedIn", isLoggedIn)
+            putString("token", currentUser.value!!.token)
             apply()
         }
     }

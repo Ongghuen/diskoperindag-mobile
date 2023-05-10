@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.ongghuen.diskoperindag.R
 import com.ongghuen.diskoperindag.databinding.FragmentDashboardBinding
+import com.ongghuen.diskoperindag.viewmodel.NewsViewModel
 import com.ongghuen.diskoperindag.viewmodel.UserViewModel
 
 class DashboardFragment : Fragment() {
@@ -35,7 +36,6 @@ class DashboardFragment : Fragment() {
         val nestedNavHostFragment =
             childFragmentManager.findFragmentById(R.id.fg_container) as? NavHostFragment
         navController = nestedNavHostFragment?.navController!!
-
 
         val prefs = activity?.getSharedPreferences("diskoperindag", Context.MODE_PRIVATE)
         val isLoggedIn = prefs!!.getBoolean("IsLoggedIn", false)

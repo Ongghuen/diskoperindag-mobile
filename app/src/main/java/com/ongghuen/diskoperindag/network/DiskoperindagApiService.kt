@@ -12,7 +12,7 @@ import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.POST
 
-const val BASE_URL = "http://192.168.80.112:8000/api/"
+const val BASE_URL = "http://192.168.100.28:8000/api/"
 
 private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 private val retrofit =
@@ -31,6 +31,12 @@ class DiskoperindagApiService {
 
         @GET("news")
         suspend fun getNews(): List<News>
+
+        @GET("news/saved")
+        suspend fun getFavorite(@Header("Authorization") token: String): List<News>
+
+        @POST("news/add")
+        suspend fun addFavorite(@Header("Authorization") token: String, id: String)
     }
 
     object UserApi {

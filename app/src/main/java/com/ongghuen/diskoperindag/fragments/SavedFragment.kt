@@ -5,10 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
+import com.ongghuen.diskoperindag.adapters.NewsAdapter
 import com.ongghuen.diskoperindag.databinding.FragmentSavedBinding
+import com.ongghuen.diskoperindag.model.News
+import com.ongghuen.diskoperindag.viewmodel.NewsViewModel
+import com.ongghuen.diskoperindag.viewmodel.UserViewModel
 
 class SavedFragment : Fragment() {
 
+    private val userViewModel: UserViewModel by activityViewModels()
+    private val newsViewModel: NewsViewModel by activityViewModels()
     private var _binding: FragmentSavedBinding? = null
     private val binding get() = _binding!!
 
@@ -23,6 +30,18 @@ class SavedFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val isItNullHuh: List<News> =
+            listOf(News(1, "wakeup.img", "Eden", "Wake Up", "ok i guesss"))
+        newsViewModel.favorites.observe(viewLifecycleOwner) { favorites ->
+            binding.savedRecyclerView.adapter = NewsAdapter(newsViewModel.favorites.value ?: isItNullHuh)
+            binding.savedRecyclerView.setHasFixedSize(true)
+        }
+
+        binding.swipeRefresh.setOnRefreshListener {
+            newsViewModel.getNews()
+            binding.swipeRefresh.setRefreshing(false)
+        }
     }
 
     override fun onDestroy() {
