@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.ongghuen.diskoperindag.model.Bantuan
 import com.ongghuen.diskoperindag.model.BantuanDetail
+import com.ongghuen.diskoperindag.model.Pelatihan
 import com.ongghuen.diskoperindag.model.Sertifikasi
 import com.ongghuen.diskoperindag.network.DiskoperindagApiService
 import kotlinx.coroutines.launch
@@ -26,8 +27,8 @@ class FasilitasiViewModel(application: Application) : AndroidViewModel(applicati
     private var _sertifikasi = MutableLiveData<List<Sertifikasi>>()
     val sertifikasi: LiveData<List<Sertifikasi>> get() = _sertifikasi
 
-//    private var _pelatihan = MutableLiveData<List<Pelatihan>>()
-//    val pelatihan: LiveData<List<Pelatihan>> get() = _pelatihan
+    private var _pelatihan = MutableLiveData<List<Pelatihan>>()
+    val pelatihan: LiveData<List<Pelatihan>> get() = _pelatihan
 
     fun getBantuan() {
         viewModelScope.launch {
@@ -76,9 +77,26 @@ class FasilitasiViewModel(application: Application) : AndroidViewModel(applicati
         }
     }
 
+    fun getPelatihan() {
+        viewModelScope.launch {
+            try {
+                val pelatihan = DiskoperindagApiService.UserApi.retrofitService.getPelatihan(
+                    "Bearer " + prefs.getString(
+                        "token", ""
+                    )
+                )
+                Log.d("CEPTION", "${sertifikasi}")
+                _pelatihan.value = pelatihan
+            } catch (e: Exception) {
+                Log.d("ERRORCEPTION", e.toString())
+            }
+        }
+    }
+
     init {
         getBantuan()
         getSertifikasi()
+        getPelatihan()
     }
 
 }

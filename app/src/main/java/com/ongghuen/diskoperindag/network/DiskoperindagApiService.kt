@@ -3,6 +3,7 @@ package com.ongghuen.diskoperindag.network
 import com.ongghuen.diskoperindag.model.Bantuan
 import com.ongghuen.diskoperindag.model.BantuanDetail
 import com.ongghuen.diskoperindag.model.News
+import com.ongghuen.diskoperindag.model.Pelatihan
 import com.ongghuen.diskoperindag.model.Sertifikasi
 import com.ongghuen.diskoperindag.model.User
 import com.ongghuen.diskoperindag.model.UserRequest
@@ -18,7 +19,7 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-const val BASE = "http://192.168.100.28:8000"
+const val BASE = "http://192.168.145.112:8000"
 const val BASE_URL = "${BASE}/api/"
 
 private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
@@ -56,6 +57,9 @@ class DiskoperindagApiService {
 
         @GET("fasilitasi/sertifikat")
         suspend fun getSertifikasi(@Header("Authorization") token: String): List<Sertifikasi>
+
+        @GET("fasilitasi/pelatihan")
+        suspend fun getPelatihan(@Header("Authorization") token: String): List<Pelatihan>
     }
 
     object UserApi {
