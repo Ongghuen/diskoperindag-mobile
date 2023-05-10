@@ -28,10 +28,6 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel.currentUser.observe(viewLifecycleOwner) { user ->
-            binding.tvProfile.text = "My name is ${user!!.user?.name} and my token is ${user.token}"
-        }
-
         binding.btnProfile.setOnClickListener {
             findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToProfileDetailFragment())
         }

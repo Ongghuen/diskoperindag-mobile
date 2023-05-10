@@ -6,17 +6,6 @@
     android:layout_height="match_parent"
     tools:context="com.ongghuen.diskoperindag.fragments.mainscreen.ProfileFragment">
 
-    <TextView
-        android:id="@+id/tvProfile"
-        android:textSize="24sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="This is profile fragment"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <Button
         android:id="@+id/btnProfile"
         android:layout_width="match_parent"
@@ -27,7 +16,7 @@
         android:gravity="left|center_vertical"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvProfile" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/dividerOne"
