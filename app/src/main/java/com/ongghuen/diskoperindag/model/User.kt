@@ -9,6 +9,9 @@ data class User(val user: UserDetail?, var token: String = "", var msg: String =
         val id: Int = 0,
         val name: String = "",
         val email: String = "",
-        val password: String = ""
+        val password: String = "",
+        val NIK: String = "",
+        val alamat: String = "",
+        val phone: String = ""
     )
 }
