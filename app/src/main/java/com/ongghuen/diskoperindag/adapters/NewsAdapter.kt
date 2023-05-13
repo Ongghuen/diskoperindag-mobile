@@ -49,14 +49,20 @@ class NewsAdapter(private val data: List<News>) :
         val item = data[position]
 
         fun checkUrlImg(): String {
-            if (item.image.contains("http", ignoreCase = true)) {
+            if (item.image.isNullOrEmpty()){
+                return ""
+            }
+            if (item.image!!.contains("http", ignoreCase = true)) {
                 return item.image
             } else {
                 return "${BASE}/images/berita/" + item.image
             }
         }
 
-        holder.image.load(checkUrlImg())
+        holder.image.load(checkUrlImg()){
+            placeholder(R.drawable.loading_animation)
+            error(R.drawable.ic_broken_image)
+        }
         holder.title.text = item.judul
         holder.subTitle.text = item.subjudul
         holder.body.text = item.body
