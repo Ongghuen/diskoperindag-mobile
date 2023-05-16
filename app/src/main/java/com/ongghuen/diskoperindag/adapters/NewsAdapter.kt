@@ -1,16 +1,19 @@
 package com.ongghuen.diskoperindag.adapters
 
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.ongghuen.checkUrlImg
+import com.ongghuen.convertTimestamp
 import com.ongghuen.diskoperindag.NavContentDirections
 import com.ongghuen.diskoperindag.R
 import com.ongghuen.diskoperindag.model.News
@@ -29,7 +32,7 @@ class NewsAdapter(private val data: List<News>, private val layout: Int) :
     }
 
     class NewsViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        val container: View  = view.findViewById(R.id.container)
+        val container: View = view.findViewById(R.id.container)
         val image: ImageView = view.findViewById(R.id.newsImage)
         val title: TextView = view.findViewById(R.id.title)
         val date: TextView = view.findViewById(R.id.date)
@@ -42,15 +45,16 @@ class NewsAdapter(private val data: List<News>, private val layout: Int) :
         return NewsViewHolder(adapterLayout)
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onBindViewHolder(holder: NewsViewHolder, position: Int) {
         val item = data[position]
 
-        holder.image.load(checkUrlImg(item)){
+        holder.image.load(checkUrlImg(item)) {
             placeholder(R.drawable.loading_animation)
             error(R.drawable.ic_broken_image)
         }
         holder.title.text = item.judul
-        holder.date.text = item.created_at
+        holder.date.text = convertTimestamp(item.created_at)
         holder.container.setOnClickListener {
             val navController = holder.view.findNavController()
             val toDetail = NavContentDirections.actionGlobalNewsDetailFragment(

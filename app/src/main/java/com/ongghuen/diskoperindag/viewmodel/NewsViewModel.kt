@@ -21,13 +21,30 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
     private var _favorites = MutableLiveData<List<News>>()
     val favorites: LiveData<List<News>> get() = _favorites
 
+    private var _detail = MutableLiveData<News>()
+    val detail: LiveData<News> get() = _detail
+
     fun getNews() {
 
         viewModelScope.launch {
             try {
                 val news = DiskoperindagApiService.UserApi.retrofitService.getNews()
                 _news.value = news
-                Log.d("OKCEPTION", "${news} really?")
+            } catch (e: Exception) {
+                Log.d("ERRORCEPTION", e.toString())
+            }
+        }
+
+    }
+
+    fun getNews(id: String) {
+
+        viewModelScope.launch {
+            try {
+                Log.d("CEPTIONNNNISTA", id)
+                val detail: News = DiskoperindagApiService.UserApi.retrofitService.getNews(id)
+                _detail.value = detail
+                Log.d("OKCEPTION", "${detail} really?")
             } catch (e: Exception) {
                 Log.d("ERRORCEPTION", e.toString())
             }
@@ -43,10 +60,9 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
                         "token", ""
                     )
                 )
-                Log.d("CEPTION", "${favorites}")
+                Log.d("CEPTION FAV", favorites.toString())
                 _favorites.value = favorites
             } catch (e: Exception) {
-                Log.d("ERRORCEPTION", e.toString())
             }
         }
     }
@@ -61,7 +77,6 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
                 )
                 getFavorite()
             } catch (e: Exception) {
-                Log.d("ERRORCEPTION", e.toString())
             }
         }
     }

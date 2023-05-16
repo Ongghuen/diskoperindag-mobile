@@ -40,6 +40,9 @@ class DiskoperindagApiService {
         @GET("news")
         suspend fun getNews(): List<News>
 
+        @GET("news/{id}")
+        suspend fun getNews(@Path("id") id: String): News
+
         @GET("news/saved")
         suspend fun getNewsFavorite(@Header("Authorization") token: String): List<News>
 

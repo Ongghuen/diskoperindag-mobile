@@ -1,6 +1,7 @@
 package com.ongghuen.diskoperindag.fragments.mainscreen
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.map
 import coil.load
+import com.ongghuen.convertTimestamp
 import com.ongghuen.diskoperindag.R
 import com.ongghuen.diskoperindag.databinding.FragmentNewsDetailBinding
 import com.ongghuen.diskoperindag.viewmodel.NewsViewModel
@@ -30,6 +32,14 @@ class NewsDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        newsViewModel.getNews(arguments?.getInt("id").toString())
+
+        newsViewModel.detail.observe(viewLifecycleOwner) { detail ->
+            binding.subTitle.text = detail.subjudul
+            binding.body.text = detail.body
+            binding.date.text = convertTimestamp(detail.created_at)
+        }
+
         val checkId = newsViewModel.favorites.map { fav -> fav.map { it.id } }
         checkId.observe(viewLifecycleOwner) { id ->
 
@@ -43,22 +53,23 @@ class NewsDetailFragment : Fragment() {
 
             binding.rcSave.setOnClickListener {
                 val argId: Int = arguments?.getInt("id")!!
-                if (!id.contains(argId)) {
-                    newsViewModel.addFavorite(argId.toString())
-                } else {
+                Log.d("CEPTIONTEST", "PLER")
+                if (id.contains(argId)) {
                     newsViewModel.deleteFavorite(argId.toString())
+                } else {
+                    newsViewModel.addFavorite(argId.toString())
                 }
             }
-
         }
 
+
         arguments?.let {
-            binding.image.load(it.getString("image")){
+            binding.image.load(it.getString("image")) {
                 placeholder(R.drawable.loading_animation)
                 error(R.drawable.ic_broken_image)
             }
             binding.title.text = it.getString("title")
-            binding.date.text = it.getString("subTitle")
+            binding.subTitle.text = it.getString("subTitle")
         }
     }
 
