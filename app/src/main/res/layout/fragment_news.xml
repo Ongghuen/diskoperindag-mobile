@@ -4,50 +4,150 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginHorizontal="20dp"
     tools:context="com.ongghuen.diskoperindag.fragments.mainscreen.NewsFragment">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/search"
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/spotlight"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:hint="Search"
-        android:layout_marginHorizontal="12dp"
-        app:boxBackgroundColor="@null"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_height="400dp"
+        android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:tintMode="src_atop"
+        android:tint="#cc290000"
+        android:src="@color/red_200"
+        app:shapeAppearanceOverlay="@style/RoundedBottom"
+        />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="40dp"
+        app:layout_constraintBottom_toBottomOf="@+id/spotlight"
+        app:layout_constraintStart_toStartOf="@+id/spotlight"
+        app:layout_constraintEnd_toEndOf="@+id/spotlight"
+        app:layout_constraintTop_toTopOf="@+id/spotlight"
         >
 
-        <EditText
-            android:id="@+id/field_search"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="text"
-            android:paddingStart="0dp"
+        <ImageView
+            android:id="@+id/ivNewsWeek"
+            android:layout_width="150dp"
+            android:layout_height="30dp"
+            android:src="@drawable/full_rounded_corner_white"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/tvHeadline"
+            app:layout_constraintStart_toStartOf="parent"
             />
 
-    </com.google.android.material.textfield.TextInputLayout>
+        <TextView
+            android:id="@+id/tvNewsWeek"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blackish"
+            android:text="Berita Minggu Ini"
+            app:layout_constraintStart_toStartOf="@+id/ivNewsWeek"
+            app:layout_constraintTop_toTopOf="@id/ivNewsWeek"
+            app:layout_constraintBottom_toBottomOf="@+id/ivNewsWeek"
+            app:layout_constraintEnd_toEndOf="@id/ivNewsWeek"/>
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipeRefresh"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintTop_toBottomOf="@id/search"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        >
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/news_recycler_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scrollbars="vertical"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <TextView
+            android:id="@+id/tvHeadline"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/tvDetail"
+            android:text="Ini adalah HEADLINE berita!!"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:textColor="@color/white"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+        <TextView
+            android:id="@+id/tvDetail"
+            android:text="Detail >"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@color/white"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/tvBeritaBaru"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:layout_marginHorizontal="40dp"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Berita Terbaru"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintEnd_toStartOf="@id/tvMore"
+        app:layout_constraintTop_toBottomOf="@+id/spotlight"/>
+
+    <TextView
+        android:id="@+id/tvMore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="40dp"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:text="Lainnya"
+        app:layout_constraintStart_toEndOf="@+id/tvBeritaBaru"
+        app:layout_constraintTop_toTopOf="@+id/tvBeritaBaru"
+        app:layout_constraintBottom_toBottomOf="@+id/tvBeritaBaru"
+        />
+
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:id="@+id/search"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:hint="Search"-->
+<!--        android:layout_marginHorizontal="12dp"-->
+<!--        app:boxBackgroundColor="@null"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        >-->
+
+<!--        <EditText-->
+<!--            android:id="@+id/field_search"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:inputType="text"-->
+<!--            android:paddingStart="0dp"-->
+<!--            />-->
+
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout-->
+<!--        android:id="@+id/swipeRefresh"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/search"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        >-->
+
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/news_recycler_view"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:scrollbars="vertical"-->
+<!--            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>-->
 </androidx.constraintlayout.widget.ConstraintLayout>

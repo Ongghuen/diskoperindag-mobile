@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.ongghuen.diskoperindag.R
 import com.ongghuen.diskoperindag.adapters.NewsAdapter
 import com.ongghuen.diskoperindag.databinding.FragmentSavedBinding
 import com.ongghuen.diskoperindag.model.News
@@ -33,7 +34,7 @@ class SavedFragment : Fragment() {
         val isItNullHuh: List<News> =
             listOf(News(1, "wakeup.img", "Eden", "Wake Up", "ok i guesss"))
         newsViewModel.favorites.observe(viewLifecycleOwner) { favorites ->
-            binding.savedRecyclerView.adapter = NewsAdapter(newsViewModel.favorites.value ?: isItNullHuh)
+            binding.savedRecyclerView.adapter = NewsAdapter(newsViewModel.favorites.value ?: isItNullHuh, R.layout.news_list_vertical)
             binding.savedRecyclerView.setHasFixedSize(true)
         }
 

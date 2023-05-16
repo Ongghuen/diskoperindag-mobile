@@ -8,6 +8,11 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.navigation.fragment.findNavController
+import coil.load
+import com.ongghuen.checkUrlImg
+import com.ongghuen.diskoperindag.NavContentDirections
+import com.ongghuen.diskoperindag.R
 import com.ongghuen.diskoperindag.adapters.NewsAdapter
 import com.ongghuen.diskoperindag.databinding.FragmentNewsBinding
 import com.ongghuen.diskoperindag.model.News
@@ -31,18 +36,34 @@ class NewsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         newsViewModel.news.observe(viewLifecycleOwner) { news ->
-            binding.newsRecyclerView.adapter = NewsAdapter(newsViewModel.news.value!!)
-            binding.newsRecyclerView.setHasFixedSize(true)
+            val item = news[news.size - 1]
+            binding.spotlight.load(checkUrlImg(item)) {
+                placeholder(R.drawable.loading_animation)
+                error(R.drawable.ic_broken_image)
+            }
+            binding.tvHeadline.text = item.judul
+            binding.spotlight.setOnClickListener {
+                val toDetail = NavContentDirections.actionGlobalNewsDetailFragment(
+                    id = item.id,
+                    image = checkUrlImg(item),
+                    title = item.judul,
+                    subTitle = item.subjudul,
+                    body = item.body
+                )
+                findNavController().navigate(toDetail)
+            }
+//            binding.newsRecyclerView.adapter = NewsAdapter(newsViewModel.news.value!!, R.layout.news_list_vertical)
+//            binding.newsRecyclerView.setHasFixedSize(true)
         }
 
-        binding.swipeRefresh.setOnRefreshListener {
-            newsViewModel.getNews()
-            binding.swipeRefresh.setRefreshing(false)
-        }
-
-        binding.fieldSearch.addTextChangedListener {
-
-        }
+//        binding.swipeRefresh.setOnRefreshListener {
+//            newsViewModel.getNews()
+//            binding.swipeRefresh.setRefreshing(false)
+//        }
+//
+//        binding.fieldSearch.addTextChangedListener {
+//
+//        }
     }
 
     override fun onDestroy() {
