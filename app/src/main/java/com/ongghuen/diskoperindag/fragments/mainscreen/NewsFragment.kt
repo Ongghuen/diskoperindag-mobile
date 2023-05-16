@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.ongghuen.diskoperindag.adapters.NewsAdapter
@@ -29,15 +30,18 @@ class NewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val isItNullHuh: List<News> = listOf(News(1, "wakeup.img", "Eden", "Wake Up", "ok i guesss"))
         newsViewModel.news.observe(viewLifecycleOwner) { news ->
-            binding.newsRecyclerView.adapter = NewsAdapter(newsViewModel.news.value ?: isItNullHuh)
+            binding.newsRecyclerView.adapter = NewsAdapter(newsViewModel.news.value!!)
             binding.newsRecyclerView.setHasFixedSize(true)
         }
 
         binding.swipeRefresh.setOnRefreshListener {
             newsViewModel.getNews()
             binding.swipeRefresh.setRefreshing(false)
+        }
+
+        binding.fieldSearch.addTextChangedListener {
+
         }
     }
 

@@ -10,8 +10,9 @@
         <item name="colorSecondaryVariant">@color/yellow_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <item name="android:navigationBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">@color/red_500</item>
+        <item name="android:navigationBarColor">@color/white</item>
         <!-- Customize your theme here. -->
+<!--        <item name="android:windowLightStatusBar">true</item>-->
     </style>
 </resources>

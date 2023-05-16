@@ -1,64 +1,170 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.ongghuen.diskoperindag.fragments.mainscreen.NewsDetailFragment">
 
-    <ImageView
-        android:id="@+id/image"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
-        android:contentDescription="@null"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_height="match_parent"
+        tools:context="com.ongghuen.diskoperindag.fragments.mainscreen.NewsDetailFragment">
 
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="26sp"
-        android:padding="8dp"
-        android:text="Something Too"
-        android:textStyle="bold"
-        android:textColor="@android:color/darker_gray"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image" />
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="-80dp"
+            android:adjustViewBounds="true"
+            android:contentDescription="@null"
+            android:scaleType="centerCrop"
+            android:tintMode="src_atop"
+            app:layout_constraintBottom_toTopOf="@id/bgTop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="#99000000" />
 
-    <TextView
-        android:id="@+id/subTitle"
-        style="Something body"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:padding="8dp"
-        android:text="Something Body"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        <ImageView
+            android:id="@+id/imBerita"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:src="@drawable/full_rounded_corner_white"
+            app:layout_constraintBottom_toTopOf="@+id/title"
+            app:layout_constraintStart_toStartOf="@id/title" />
 
-    <TextView
-        android:id="@+id/body"
-        style="Something body"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:padding="8dp"
-        android:textSize="14sp"
-        android:text="Something Body"
-        android:autoLink="web"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/subTitle" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Berita"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/imBerita"
+            app:layout_constraintEnd_toEndOf="@+id/imBerita"
+            app:layout_constraintStart_toStartOf="@+id/imBerita"
+            app:layout_constraintTop_toTopOf="@id/imBerita" />
 
-    <Button
-        android:id="@+id/btn_save"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="save?"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/body"
-        />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:padding="8dp"
+            android:text="Something Too"
+            android:textColor="@color/white"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/subTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/subTitle"
+            style="Something body"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
+            android:layout_marginBottom="40dp"
+            android:padding="8dp"
+            android:text="Something Body"
+            android:textColor="@color/greyish_text"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/bgTop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/bgTop"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="460dp"
+            android:src="@drawable/top_rounded_corner_solid"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/image" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginVertical="20dp"
+            app:layout_constraintStart_toStartOf="@id/bgTop"
+            app:layout_constraintTop_toTopOf="@+id/bgTop">
+
+            <ImageView
+                android:id="@+id/rc_first"
+                android:layout_width="170dp"
+                android:layout_height="50dp"
+                android:layout_marginVertical="10dp"
+                android:src="@drawable/full_rounded_corner_black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DISKOPERINDAG"
+                android:textColor="@color/white"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/rc_first"
+                app:layout_constraintEnd_toEndOf="@+id/rc_first"
+                app:layout_constraintStart_toStartOf="@+id/rc_first"
+                app:layout_constraintTop_toTopOf="@+id/rc_first" />
+
+            <ImageView
+                android:id="@+id/rc_save"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="10dp"
+                android:src="@drawable/full_rounded_corner_white"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/rc_first"
+                app:layout_constraintTop_toTopOf="@id/rc_first" />
+
+            <ImageView
+                android:id="@+id/ic_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_simpan"
+                app:layout_constraintBottom_toBottomOf="@+id/rc_save"
+                app:layout_constraintEnd_toStartOf="@id/tvSave"
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="@id/rc_save"
+                app:layout_constraintTop_toTopOf="@+id/rc_save" />
+
+            <TextView
+                android:id="@+id/tvSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="5dp"
+                android:text="Simpan"
+                android:textColor="@color/blackish"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toBottomOf="@+id/rc_save"
+                app:layout_constraintEnd_toEndOf="@+id/rc_save"
+                app:layout_constraintStart_toEndOf="@+id/ic_save"
+                app:layout_constraintTop_toTopOf="@+id/rc_save" />
+
+
+            <TextView
+                android:id="@+id/body"
+                style="Something body"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:autoLink="web"
+                android:padding="8dp"
+                android:text="Something Body"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rc_first" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

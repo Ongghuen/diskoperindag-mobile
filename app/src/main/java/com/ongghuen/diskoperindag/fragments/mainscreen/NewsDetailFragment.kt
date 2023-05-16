@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.map
 import coil.load
+import com.ongghuen.diskoperindag.R
 import com.ongghuen.diskoperindag.databinding.FragmentNewsDetailBinding
 import com.ongghuen.diskoperindag.viewmodel.NewsViewModel
 
@@ -33,12 +34,14 @@ class NewsDetailFragment : Fragment() {
         checkId.observe(viewLifecycleOwner) { id ->
 
             if (id.contains(arguments?.getInt("id"))) {
-                binding.btnSave.text = "Unsave"
+                binding.tvSave.text = "Tersimpan"
+                binding.icSave.setImageResource(R.drawable.ic_tersimpan)
             } else {
-                binding.btnSave.text = "Save"
+                binding.tvSave.text = "Simpan"
+                binding.icSave.setImageResource(R.drawable.ic_simpan)
             }
 
-            binding.btnSave.setOnClickListener {
+            binding.rcSave.setOnClickListener {
                 val argId: Int = arguments?.getInt("id")!!
                 if (!id.contains(argId)) {
                     newsViewModel.addFavorite(argId.toString())
@@ -50,7 +53,10 @@ class NewsDetailFragment : Fragment() {
         }
 
         arguments?.let {
-            binding.image.load(it.getString("image"))
+            binding.image.load(it.getString("image")){
+                placeholder(R.drawable.loading_animation)
+                error(R.drawable.ic_broken_image)
+            }
             binding.title.text = it.getString("title")
             binding.subTitle.text = it.getString("subTitle")
             binding.body.text = it.getString("body")
