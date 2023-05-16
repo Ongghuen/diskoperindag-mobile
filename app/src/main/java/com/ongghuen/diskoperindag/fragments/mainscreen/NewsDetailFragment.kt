@@ -58,8 +58,7 @@ class NewsDetailFragment : Fragment() {
                 error(R.drawable.ic_broken_image)
             }
             binding.title.text = it.getString("title")
-            binding.subTitle.text = it.getString("subTitle")
-            binding.body.text = it.getString("body")
+            binding.date.text = it.getString("subTitle")
         }
     }
 

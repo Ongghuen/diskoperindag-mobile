@@ -1,21 +1,19 @@
 package com.ongghuen.diskoperindag.fragments.mainscreen
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import coil.load
 import com.ongghuen.checkUrlImg
 import com.ongghuen.diskoperindag.NavContentDirections
 import com.ongghuen.diskoperindag.R
 import com.ongghuen.diskoperindag.adapters.NewsAdapter
 import com.ongghuen.diskoperindag.databinding.FragmentNewsBinding
-import com.ongghuen.diskoperindag.model.News
 import com.ongghuen.diskoperindag.viewmodel.NewsViewModel
 
 class NewsFragment : Fragment() {
@@ -47,20 +45,22 @@ class NewsFragment : Fragment() {
                     id = item.id,
                     image = checkUrlImg(item),
                     title = item.judul,
-                    subTitle = item.subjudul,
-                    body = item.body
                 )
                 findNavController().navigate(toDetail)
             }
-//            binding.newsRecyclerView.adapter = NewsAdapter(newsViewModel.news.value!!, R.layout.news_list_vertical)
-//            binding.newsRecyclerView.setHasFixedSize(true)
+            binding.newsRecyclerView.adapter = NewsAdapter(newsViewModel.news.value!!, R.layout.news_list_horizontal)
+            binding.newsRecyclerView.setHasFixedSize(true)
+            val layoutManager = LinearLayoutManager(requireContext())
+            layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+
+            binding.newsRecyclerView.layoutManager = layoutManager
         }
 
-//        binding.swipeRefresh.setOnRefreshListener {
-//            newsViewModel.getNews()
-//            binding.swipeRefresh.setRefreshing(false)
-//        }
-//
+        binding.swipeRefresh.setOnRefreshListener {
+            newsViewModel.getNews()
+            binding.swipeRefresh.setRefreshing(false)
+        }
+
 //        binding.fieldSearch.addTextChangedListener {
 //
 //        }

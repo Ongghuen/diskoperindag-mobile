@@ -10,12 +10,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.google.android.material.card.MaterialCardView
 import com.ongghuen.checkUrlImg
 import com.ongghuen.diskoperindag.NavContentDirections
 import com.ongghuen.diskoperindag.R
 import com.ongghuen.diskoperindag.model.News
-import com.ongghuen.diskoperindag.network.BASE
 
 class NewsAdapter(private val data: List<News>, private val layout: Int) :
     ListAdapter<News, NewsAdapter.NewsViewHolder>(DiffCallback) {
@@ -31,11 +29,10 @@ class NewsAdapter(private val data: List<News>, private val layout: Int) :
     }
 
     class NewsViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        val cardContainer: MaterialCardView = view.findViewById(R.id.cardContainer)
+        val container: View  = view.findViewById(R.id.container)
         val image: ImageView = view.findViewById(R.id.newsImage)
         val title: TextView = view.findViewById(R.id.title)
-        val subTitle: TextView = view.findViewById(R.id.subTitle)
-        val body: TextView = view.findViewById(R.id.body)
+        val date: TextView = view.findViewById(R.id.date)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsViewHolder {
@@ -53,16 +50,13 @@ class NewsAdapter(private val data: List<News>, private val layout: Int) :
             error(R.drawable.ic_broken_image)
         }
         holder.title.text = item.judul
-        holder.subTitle.text = item.subjudul
-        holder.body.text = item.body
-        holder.cardContainer.setOnClickListener {
+        holder.date.text = item.created_at
+        holder.container.setOnClickListener {
             val navController = holder.view.findNavController()
             val toDetail = NavContentDirections.actionGlobalNewsDetailFragment(
                 id = item.id,
                 image = checkUrlImg(item),
                 title = item.judul,
-                subTitle = item.subjudul,
-                body = item.body
             )
             navController.navigate(toDetail)
         }

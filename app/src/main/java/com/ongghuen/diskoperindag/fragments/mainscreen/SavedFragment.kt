@@ -32,7 +32,7 @@ class SavedFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val isItNullHuh: List<News> =
-            listOf(News(1, "wakeup.img", "Eden", "Wake Up", "ok i guesss"))
+            listOf(News(1, "wakeup.img", "Eden", "Wake Up", "ok i guesss", "2021-30-31"))
         newsViewModel.favorites.observe(viewLifecycleOwner) { favorites ->
             binding.savedRecyclerView.adapter = NewsAdapter(newsViewModel.favorites.value ?: isItNullHuh, R.layout.news_list_vertical)
             binding.savedRecyclerView.setHasFixedSize(true)

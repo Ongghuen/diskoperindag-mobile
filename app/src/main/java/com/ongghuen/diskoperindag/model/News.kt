@@ -9,4 +9,5 @@ data class News(
     val judul: String,
     val subjudul: String,
     val body: String,
+    val created_at: String,
 )
