@@ -30,7 +30,7 @@ class NewsAllFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         newsViewModel.news.observe(viewLifecycleOwner) { news ->
             binding.newsRecyclerView.adapter =
-                NewsAdapter(newsViewModel.news.value!!, R.layout.news_list_vertical)
+                NewsAdapter(newsViewModel.news.value!!.reversed(), R.layout.news_list_vertical)
             binding.newsRecyclerView.setHasFixedSize(true)
         }
 
