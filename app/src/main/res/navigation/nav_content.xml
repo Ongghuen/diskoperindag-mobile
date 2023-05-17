@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_newsFragment_to_newsDetailFragment"
             app:destination="@id/newsDetailFragment" />
+        <action
+            android:id="@+id/action_newsFragment_to_newsAllFragment"
+            app:destination="@id/newsAllFragment" />
     </fragment>
     <fragment
         android:id="@+id/savedFragment"
@@ -157,5 +160,10 @@
             android:defaultValue="Keterangan"
             app:argType="string" />
     </fragment>
+    <fragment
+        android:id="@+id/newsAllFragment"
+        android:name="com.ongghuen.diskoperindag.fragments.mainscreen.NewsAllFragment"
+        android:label="Cari Berita"
+        tools:layout="@layout/fragment_news_all" />
 
 </navigation>

@@ -49,7 +49,8 @@ class NewsFragment : Fragment() {
                 findNavController().navigate(toDetail)
             }
             if (newsViewModel.news.value!!.size > 5) {
-                val listRecycle = newsViewModel.news.value!!.sortedByDescending { it.id }.take(5).asReversed()
+                val listRecycle =
+                    newsViewModel.news.value!!.sortedByDescending { it.id }.take(5).asReversed()
                 binding.newsRecyclerView.adapter =
                     NewsAdapter(listRecycle, R.layout.news_list_horizontal)
             } else {
@@ -68,9 +69,10 @@ class NewsFragment : Fragment() {
             binding.swipeRefresh.setRefreshing(false)
         }
 
-//        binding.fieldSearch.addTextChangedListener {
-//
-//        }
+        binding.tvMore.setOnClickListener {
+            val toAll = NewsFragmentDirections.actionNewsFragmentToNewsAllFragment()
+            findNavController().navigate(toAll)
+        }
     }
 
     override fun onDestroy() {
