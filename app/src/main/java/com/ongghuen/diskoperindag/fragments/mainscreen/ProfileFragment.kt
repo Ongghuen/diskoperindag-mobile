@@ -44,10 +44,6 @@ class ProfileFragment : Fragment() {
             findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToFasilitasiPelatihanFragment())
         }
 
-        binding.btnSurat.setOnClickListener {
-            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToSuratFragment())
-        }
-
         binding.btnLogout.setOnClickListener {
             viewModel.logout()
         }

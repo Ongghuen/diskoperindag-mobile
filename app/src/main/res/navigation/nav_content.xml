@@ -36,9 +36,6 @@
         <action
             android:id="@+id/action_profileFragment_to_profileDetailFragment"
             app:destination="@id/profileDetailFragment" />
-        <action
-            android:id="@+id/action_profileFragment_to_suratFragment"
-            app:destination="@id/suratFragment" />
     </fragment>
 
     <fragment
@@ -118,11 +115,6 @@
         android:name="com.ongghuen.diskoperindag.fragments.mainscreen.ProfileDetailFragment"
         android:label="Profile Account Detail"
         tools:layout="@layout/fragment_profile_detail" />
-    <fragment
-        android:id="@+id/suratFragment"
-        android:name="com.ongghuen.diskoperindag.fragments.mainscreen.SuratFragment"
-        android:label="Kirim Surat"
-        tools:layout="@layout/fragment_surat" />
     <fragment
         android:id="@+id/fasilitasiPelatihanDetailFragment"
         android:name="com.ongghuen.diskoperindag.fragments.fasilitasi.FasilitasiPelatihanDetailFragment"

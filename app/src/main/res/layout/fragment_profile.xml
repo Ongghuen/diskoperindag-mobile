@@ -87,26 +87,6 @@
         app:dividerInsetEnd="16dp"/>
 
     <Button
-        android:id="@+id/btnSurat"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Kirim Surat"
-        android:paddingLeft="16dp"
-        android:paddingVertical="12dp"
-        android:gravity="left|center_vertical"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dividerFour" />
-
-    <com.google.android.material.divider.MaterialDivider
-        android:id="@+id/dividerFive"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/btnSurat"
-        app:dividerInsetStart="12dp"
-        app:dividerInsetEnd="16dp"/>
-
-    <Button
         android:id="@+id/btnLogout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -116,6 +96,6 @@
         android:gravity="left|center_vertical"
         style="@style/Widget.MaterialComponents.Button.TextButton"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dividerFive" />
+        app:layout_constraintTop_toBottomOf="@+id/dividerFour" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
