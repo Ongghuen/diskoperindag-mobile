@@ -20,4 +20,8 @@
     <color name="greyish_text">#cfbdb1</color>
     <color name="blackish">#1d1d1d</color>
 
+    <color name="reddish">#9d0006</color>
+    <color name="yellowish">#b57614</color>
+    <color name="blueish">#076678</color>
+
 </resources>

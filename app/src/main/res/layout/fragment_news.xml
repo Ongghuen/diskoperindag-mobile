@@ -9,7 +9,7 @@
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/spotlight"
         android:layout_width="0dp"
-        android:layout_height="350dp"
+        android:layout_height="330dp"
         android:scaleType="centerCrop"
         android:src="@color/red_200"
         android:tint="#cc290000"

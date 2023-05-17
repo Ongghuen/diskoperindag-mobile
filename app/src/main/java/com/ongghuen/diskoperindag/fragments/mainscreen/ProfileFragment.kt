@@ -8,11 +8,14 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.ongghuen.diskoperindag.databinding.FragmentProfileBinding
+import com.ongghuen.diskoperindag.viewmodel.FasilitasiViewModel
+import com.ongghuen.diskoperindag.viewmodel.NewsViewModel
 import com.ongghuen.diskoperindag.viewmodel.UserViewModel
 
 class ProfileFragment : Fragment() {
 
-    private val viewModel: UserViewModel by activityViewModels()
+    private val userViewModel: UserViewModel by activityViewModels()
+    private val fasilitasiViewModel: FasilitasiViewModel by activityViewModels()
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
 
@@ -28,25 +31,38 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnProfile.setOnClickListener {
-            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToProfileDetailFragment())
+        userViewModel.currentUser.observe(viewLifecycleOwner) { user ->
+            binding.name.text = user.user!!.name
+            binding.clAccountSetting.setOnClickListener {
+                val toDetail = ProfileFragmentDirections.actionProfileFragmentToProfileDetailFragment()
+                findNavController().navigate(toDetail)
+            }
         }
 
-        binding.btnBantuan.setOnClickListener {
-            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToFasilitasiBantuanFragment())
+        fasilitasiViewModel.bantuan.observe(viewLifecycleOwner) { bantuan ->
+            binding.countBantuan.text = bantuan.size.toString()
+            binding.bantuanDetail.setOnClickListener {
+                val toDetail = ProfileFragmentDirections.actionProfileFragmentToFasilitasiBantuanFragment()
+                findNavController().navigate(toDetail)
+            }
         }
 
-        binding.btnSertifikasi.setOnClickListener {
-            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToFasilitasiSertifikasiFragment())
+        fasilitasiViewModel.sertifikasi.observe(viewLifecycleOwner) { sertifikasi ->
+            binding.countSertifikat.text = sertifikasi.size.toString()
+            binding.sertifikasiDetail.setOnClickListener {
+                val toDetail = ProfileFragmentDirections.actionProfileFragmentToFasilitasiSertifikasiFragment()
+                findNavController().navigate(toDetail)
+            }
         }
 
-        binding.btnPelatihan.setOnClickListener {
-            findNavController().navigate(ProfileFragmentDirections.actionProfileFragmentToFasilitasiPelatihanFragment())
+        fasilitasiViewModel.pelatihan.observe(viewLifecycleOwner) { pelatihan ->
+            binding.countPelatihan.text = pelatihan.size.toString()
+            binding.pelatihanDetail.setOnClickListener {
+                val toDetail = ProfileFragmentDirections.actionProfileFragmentToFasilitasiPelatihanFragment()
+                findNavController().navigate(toDetail)
+            }
         }
 
-        binding.btnLogout.setOnClickListener {
-            viewModel.logout()
-        }
     }
 
 }

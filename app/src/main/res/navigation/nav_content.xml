@@ -163,7 +163,7 @@
     <fragment
         android:id="@+id/newsAllFragment"
         android:name="com.ongghuen.diskoperindag.fragments.mainscreen.NewsAllFragment"
-        android:label="Cari Berita"
+        android:label="Berita Lainnya"
         tools:layout="@layout/fragment_news_all" />
 
 </navigation>
