@@ -48,7 +48,14 @@ class NewsFragment : Fragment() {
                 )
                 findNavController().navigate(toDetail)
             }
-            binding.newsRecyclerView.adapter = NewsAdapter(newsViewModel.news.value!!, R.layout.news_list_horizontal)
+            if (newsViewModel.news.value!!.size > 5) {
+                val listRecycle = newsViewModel.news.value!!.sortedByDescending { it.id }.take(5).asReversed()
+                binding.newsRecyclerView.adapter =
+                    NewsAdapter(listRecycle, R.layout.news_list_horizontal)
+            } else {
+                binding.newsRecyclerView.adapter =
+                    NewsAdapter(newsViewModel.news.value!!, R.layout.news_list_horizontal)
+            }
             binding.newsRecyclerView.setHasFixedSize(true)
             val layoutManager = LinearLayoutManager(requireContext())
             layoutManager.orientation = LinearLayoutManager.HORIZONTAL
