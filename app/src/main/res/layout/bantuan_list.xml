@@ -2,17 +2,100 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginVertical="10dp"
+    >
 
-    <Button
-        android:id="@+id/namaBantuan"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="left|center_vertical"
-        android:text="Hey lol"
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@color/reddish"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/RoundedSquare"
+        />
+
+    <TextView
+        android:id="@+id/fasilitasiName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="20dp"
+        android:text="Nama Bantuan"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/container"
+        app:layout_constraintTop_toTopOf="@id/container" />
+
+    <TextView
+        android:id="@+id/detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:text="❯"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@id/container"
+        app:layout_constraintBottom_toBottomOf="@id/fasilitasiName"
+        app:layout_constraintTop_toTopOf="@id/fasilitasiName" />
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:text="17-09-02"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@id/fasilitasiName"
+        app:layout_constraintTop_toBottomOf="@id/fasilitasiName" />
+
+    <TextView
+        android:id="@+id/jenis_usaha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jenis Usaha"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@id/nama_jenis_usaha"
+        app:layout_constraintBottom_toTopOf="@+id/nama_jenis_usaha"
+        />
+
+    <TextView
+        android:id="@+id/nama_jenis_usaha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nama"
+        android:textColor="@color/white"
+        android:layout_marginVertical="20dp"
+        app:layout_constraintStart_toStartOf="@id/fasilitasiName"
+        app:layout_constraintBottom_toBottomOf="@+id/container"
+        />
+
+    <TextView
+        android:id="@+id/koordinator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Koordinator"
+        android:textStyle="bold"
+        android:textColor="@color/white"
+        android:layout_marginHorizontal="50dp"
+        app:layout_constraintStart_toEndOf="@+id/jenis_usaha"
+        app:layout_constraintTop_toTopOf="@id/jenis_usaha"
+        app:layout_constraintBottom_toBottomOf="@id/jenis_usaha"
+        />
+
+    <TextView
+        android:id="@+id/nama_koordinator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nama"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/koordinator"
+        app:layout_constraintTop_toBottomOf="@+id/koordinator"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

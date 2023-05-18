@@ -12,7 +12,7 @@
         android:layout_height="330dp"
         android:scaleType="centerCrop"
         android:src="@color/red_200"
-        android:tint="#cc290000"
+        android:tint="#4d000000"
         android:tintMode="src_atop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

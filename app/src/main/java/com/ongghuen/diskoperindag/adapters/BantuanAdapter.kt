@@ -27,7 +27,11 @@ class BantuanAdapter(private val data: List<Bantuan>) :
     }
 
     class BantuanViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        val namaBantuan: TextView = view.findViewById(R.id.namaBantuan)
+        val container: View = view.findViewById(R.id.container)
+        val namaBantuan: TextView = view.findViewById(R.id.fasilitasiName)
+        val jenis_usaha: TextView = view.findViewById(R.id.nama_jenis_usaha)
+        val koordinator: TextView = view.findViewById(R.id.nama_koordinator)
+        val jadwal: TextView = view.findViewById(R.id.date)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BantuanViewHolder {
@@ -40,7 +44,10 @@ class BantuanAdapter(private val data: List<Bantuan>) :
         val item = data[position]
 
         holder.namaBantuan.text = item.nama_bantuan
-        holder.namaBantuan.setOnClickListener {
+        holder.jenis_usaha.text = item.jenis_usaha
+        holder.koordinator.text = item.koordinator
+        holder.jadwal.text = item.tahun_pemberian
+        holder.container.setOnClickListener {
             val navController = holder.view.findNavController()
             navController.navigate(FasilitasiBantuanFragmentDirections.actionFasilitasiBantuanFragmentToFasilitasiBantuanDetailFragment(
                 item.id

@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.activityViewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ongghuen.diskoperindag.R
@@ -32,6 +33,10 @@ class NewsAllFragment : Fragment() {
             binding.newsRecyclerView.adapter =
                 NewsAdapter(newsViewModel.news.value!!.reversed(), R.layout.news_list_vertical)
             binding.newsRecyclerView.setHasFixedSize(true)
+            binding.searchField.addTextChangedListener {
+                val value = newsViewModel.news.value!!.filter { it.judul.contains(binding.searchField.text.toString(), true) }
+                binding.newsRecyclerView.adapter = NewsAdapter(value, R.layout.news_list_vertical)
+            }
         }
 
         binding.swipeRefresh.setOnRefreshListener {

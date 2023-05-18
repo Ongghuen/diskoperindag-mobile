@@ -9,4 +9,5 @@ data class Bantuan(
     val jenis_usaha: String,
     val koordinator: String,
     val sumber_anggaran: String,
+    val tahun_pemberian: String,
 )
