@@ -2,6 +2,7 @@ package com.ongghuen.diskoperindag.network
 
 import com.ongghuen.diskoperindag.model.Bantuan
 import com.ongghuen.diskoperindag.model.BantuanDetail
+import com.ongghuen.diskoperindag.model.ChangePasswordRequest
 import com.ongghuen.diskoperindag.model.News
 import com.ongghuen.diskoperindag.model.Pelatihan
 import com.ongghuen.diskoperindag.model.Sertifikasi
@@ -37,8 +38,11 @@ class DiskoperindagApiService {
         @GET("logout")
         suspend fun logout(@Header("Authorization") token: String)
 
-//        @GET("changePassword")
-//        suspend fun changePassword(@Header("Authorization") token: String)
+        @POST("changePassword")
+        suspend fun changePassword(
+            @Header("Authorization") token: String,
+            @Body request: ChangePasswordRequest
+        )
 
         @GET("news")
         suspend fun getNews(): List<News>
@@ -50,16 +54,25 @@ class DiskoperindagApiService {
         suspend fun getNewsFavorite(@Header("Authorization") token: String): List<News>
 
         @POST("news/add")
-        suspend fun addNewsFavorite(@Header("Authorization") token: String, @Query("berita_id") id: String)
+        suspend fun addNewsFavorite(
+            @Header("Authorization") token: String,
+            @Query("berita_id") id: String
+        )
 
         @DELETE("news/delete/{id}")
-        suspend fun deleteNewsFavorite(@Header("Authorization") token: String, @Path("id") id: String)
+        suspend fun deleteNewsFavorite(
+            @Header("Authorization") token: String,
+            @Path("id") id: String
+        )
 
         @GET("fasilitasi/bantuan")
         suspend fun getBantuan(@Header("Authorization") token: String): List<Bantuan>
 
         @GET("fasilitasi/bantuan/{id}")
-        suspend fun getBantuanDetail(@Header("Authorization") token: String, @Path("id") id: String): BantuanDetail
+        suspend fun getBantuanDetail(
+            @Header("Authorization") token: String,
+            @Path("id") id: String
+        ): BantuanDetail
 
         @GET("fasilitasi/sertifikat")
         suspend fun getSertifikasi(@Header("Authorization") token: String): List<Sertifikasi>
