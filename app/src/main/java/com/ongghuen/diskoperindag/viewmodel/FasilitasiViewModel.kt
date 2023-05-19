@@ -14,6 +14,10 @@ import com.ongghuen.diskoperindag.model.Sertifikasi
 import com.ongghuen.diskoperindag.network.DiskoperindagApiService
 import kotlinx.coroutines.launch
 
+enum class FasilitasiLoading {
+    LOADING, SUCCESS, ERROR
+}
+
 class FasilitasiViewModel(application: Application) : AndroidViewModel(application) {
     val prefs =
         getApplication<Application>().getSharedPreferences("diskoperindag", Context.MODE_PRIVATE)
@@ -30,7 +34,12 @@ class FasilitasiViewModel(application: Application) : AndroidViewModel(applicati
     private var _pelatihan = MutableLiveData<List<Pelatihan>>()
     val pelatihan: LiveData<List<Pelatihan>> get() = _pelatihan
 
+    private var _status = MutableLiveData(FasilitasiLoading.LOADING)
+    val status: LiveData<FasilitasiLoading> get() = _status
+
     fun getBantuan() {
+        _status.value = FasilitasiLoading.LOADING
+
         viewModelScope.launch {
             try {
                 val bantuan = DiskoperindagApiService.UserApi.retrofitService.getBantuan(
@@ -40,13 +49,16 @@ class FasilitasiViewModel(application: Application) : AndroidViewModel(applicati
                 )
                 Log.d("CEPTION", "${bantuan}")
                 _bantuan.value = bantuan
+                _status.value = FasilitasiLoading.SUCCESS
             } catch (e: Exception) {
                 Log.d("ERRORCEPTION", e.toString())
+                _status.value = FasilitasiLoading.ERROR
             }
         }
     }
 
     fun getBantuanDetail(id: String) {
+        _status.value = FasilitasiLoading.LOADING
         viewModelScope.launch {
             try {
                 val result = DiskoperindagApiService.UserApi.retrofitService.getBantuanDetail(
@@ -55,13 +67,16 @@ class FasilitasiViewModel(application: Application) : AndroidViewModel(applicati
                 )
                 Log.d("CEPTION", "$result")
                 _bantuanDetail.value = result
+                _status.value = FasilitasiLoading.SUCCESS
             } catch (e: Exception) {
                 Log.d("ERRORCEPTION", e.toString())
+                _status.value = FasilitasiLoading.ERROR
             }
         }
     }
 
     fun getSertifikasi() {
+        _status.value = FasilitasiLoading.LOADING
         viewModelScope.launch {
             try {
                 val sertifikasi = DiskoperindagApiService.UserApi.retrofitService.getSertifikasi(
@@ -71,8 +86,10 @@ class FasilitasiViewModel(application: Application) : AndroidViewModel(applicati
                 )
                 Log.d("CEPTION", "${sertifikasi}")
                 _sertifikasi.value = sertifikasi
+                _status.value = FasilitasiLoading.SUCCESS
             } catch (e: Exception) {
                 Log.d("ERRORCEPTION", e.toString())
+                _status.value = FasilitasiLoading.ERROR
             }
         }
     }

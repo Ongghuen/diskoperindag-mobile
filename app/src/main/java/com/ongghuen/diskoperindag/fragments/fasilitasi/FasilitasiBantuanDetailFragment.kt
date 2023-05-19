@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ongghuen.diskoperindag.R
 import com.ongghuen.diskoperindag.adapters.BantuanDetailAdapter
 import com.ongghuen.diskoperindag.databinding.FragmentFasilitasiBantuanDetailBinding
+import com.ongghuen.diskoperindag.viewmodel.FasilitasiLoading
 import com.ongghuen.diskoperindag.viewmodel.FasilitasiViewModel
 
 class FasilitasiBantuanDetailFragment : Fragment() {
@@ -31,6 +32,19 @@ class FasilitasiBantuanDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         fasilitasiViewModel.getBantuanDetail(arguments?.getInt("id").toString())
+
+        fasilitasiViewModel.status.observe(viewLifecycleOwner) { status ->
+            when(status) {
+                FasilitasiLoading.LOADING -> {
+                    binding.containerNetwork.visibility = View.VISIBLE
+                    binding.networkStatusImage.setImageResource(R.drawable.loading_animation)
+                }
+                else -> {
+                    binding.containerNetwork.visibility = View.GONE
+                }
+            }
+
+        }
 
         fasilitasiViewModel.bantuanDetail.observe(viewLifecycleOwner) { detail ->
             binding.namaBantuan.text = detail.nama_bantuan

@@ -1,5 +1,6 @@
 package com.ongghuen.diskoperindag.fragments.mainscreen
 
+import android.opengl.Visibility
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -14,6 +15,7 @@ import coil.load
 import com.ongghuen.convertTimestamp
 import com.ongghuen.diskoperindag.R
 import com.ongghuen.diskoperindag.databinding.FragmentNewsDetailBinding
+import com.ongghuen.diskoperindag.viewmodel.NewsLoading
 import com.ongghuen.diskoperindag.viewmodel.NewsViewModel
 
 class NewsDetailFragment : Fragment() {
@@ -41,6 +43,17 @@ class NewsDetailFragment : Fragment() {
             binding.subTitle.text = detail.subjudul
             binding.body.text = detail.body
             binding.date.text = convertTimestamp(detail.created_at)
+        }
+
+        newsViewModel.status.observe(viewLifecycleOwner) { status ->
+           when(status) {
+               NewsLoading.ERROR -> {
+                   binding.containerError.visibility = View.VISIBLE
+               }
+               else -> {
+                   binding.containerError.visibility = View.GONE
+               }
+           }
         }
 
         val checkId = newsViewModel.favorites.map { fav -> fav.map { it.id } }

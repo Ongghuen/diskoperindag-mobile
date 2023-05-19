@@ -11,6 +11,10 @@ import com.ongghuen.diskoperindag.model.News
 import com.ongghuen.diskoperindag.network.DiskoperindagApiService
 import kotlinx.coroutines.launch
 
+enum class NewsLoading {
+    LOADING, SUCCESS, ERROR
+}
+
 class NewsViewModel(application: Application) : AndroidViewModel(application) {
 
     val prefs =
@@ -24,14 +28,19 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
     private var _detail = MutableLiveData<News>()
     val detail: LiveData<News> get() = _detail
 
-    fun getNews() {
+    private var _status = MutableLiveData(NewsLoading.LOADING)
+    val status: LiveData<NewsLoading> get() = _status
 
+    fun getNews() {
+        _status.value = NewsLoading.LOADING
         viewModelScope.launch {
             try {
                 val news = DiskoperindagApiService.UserApi.retrofitService.getNews()
                 _news.value = news
+                _status.value = NewsLoading.SUCCESS
             } catch (e: Exception) {
                 Log.d("ERRORCEPTION", e.toString())
+                _status.value = NewsLoading.ERROR
             }
         }
 
@@ -39,14 +48,17 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
 
     fun getNews(id: String) {
 
+        _status.value = NewsLoading.LOADING
         viewModelScope.launch {
             try {
                 Log.d("CEPTIONNNNISTA", id)
                 val detail: News = DiskoperindagApiService.UserApi.retrofitService.getNews(id)
                 _detail.value = detail
+                _status.value = NewsLoading.SUCCESS
                 Log.d("OKCEPTION", "${detail} really?")
             } catch (e: Exception) {
                 Log.d("ERRORCEPTION", e.toString())
+                _status.value = NewsLoading.ERROR
             }
         }
 
@@ -63,6 +75,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
                 Log.d("CEPTION FAV", favorites.toString())
                 _favorites.value = favorites
             } catch (e: Exception) {
+                _status.value = NewsLoading.ERROR
             }
         }
     }
@@ -77,6 +90,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
                 )
                 getFavorite()
             } catch (e: Exception) {
+                _status.value = NewsLoading.ERROR
             }
         }
     }
@@ -92,6 +106,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
                 getFavorite()
             } catch (e: Exception) {
                 Log.d("ERRORCEPTION", e.toString())
+                _status.value = NewsLoading.ERROR
             }
         }
     }

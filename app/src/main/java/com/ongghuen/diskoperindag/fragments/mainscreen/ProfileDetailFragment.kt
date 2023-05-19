@@ -29,10 +29,12 @@ class ProfileDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel.currentUser.observe(viewLifecycleOwner) { user ->
-            binding.namaUser.text = user.user?.name
-            binding.nikUser.text = user.user?.NIK
-            binding.alamatUser.text = user.user?.alamat
-            binding.telpUser.text = user.user?.phone
+            binding.btnSubmit.setOnClickListener {
+
+            }
+            binding.btnLogout.setOnClickListener {
+                viewModel.logout()
+            }
         }
     }
 }

@@ -42,7 +42,6 @@ class LoginFragment : Fragment() {
 
         viewModel.status.observe(viewLifecycleOwner) { status ->
             when (status) {
-                UserLoading.INIT -> binding.clStatus.visibility = View.GONE
                 UserLoading.LOADING -> {
                     binding.clStatus.visibility = View.VISIBLE
                     binding.clStatus.setBackgroundColor(Color.parseColor("#FFA500"))
@@ -62,8 +61,6 @@ class LoginFragment : Fragment() {
                     binding.clStatus.visibility = View.VISIBLE
                     binding.clStatus.setBackgroundColor(Color.parseColor("#00ff00"))
                 }
-
-                UserLoading.FINISH -> binding.clStatus.visibility = View.GONE
 
                 else -> binding.clStatus.visibility = View.GONE
             }

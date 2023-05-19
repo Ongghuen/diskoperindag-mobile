@@ -16,11 +16,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.ongghuen.diskoperindag.R
 import com.ongghuen.diskoperindag.databinding.FragmentDashboardBinding
+import com.ongghuen.diskoperindag.viewmodel.FasilitasiViewModel
+import com.ongghuen.diskoperindag.viewmodel.NewsViewModel
 import com.ongghuen.diskoperindag.viewmodel.UserViewModel
 
 class DashboardFragment : Fragment() {
 
     private val userViewModel: UserViewModel by activityViewModels()
+
     private var _binding: FragmentDashboardBinding? = null
     private lateinit var navController: NavController
     private val binding get() = _binding!!

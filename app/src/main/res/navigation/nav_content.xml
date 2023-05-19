@@ -116,7 +116,7 @@
     <fragment
         android:id="@+id/profileDetailFragment"
         android:name="com.ongghuen.diskoperindag.fragments.mainscreen.ProfileDetailFragment"
-        android:label="Profile Account Detail"
+        android:label="Setting Akun"
         tools:layout="@layout/fragment_profile_detail" />
     <fragment
         android:id="@+id/fasilitasiPelatihanDetailFragment"

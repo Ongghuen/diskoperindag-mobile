@@ -13,7 +13,7 @@ import com.ongghuen.diskoperindag.network.DiskoperindagApiService
 import kotlinx.coroutines.launch
 
 enum class UserLoading {
-    INIT, LOADING, SUCCESS, FINISH, ERROR
+    LOADING, SUCCESS, ERROR
 }
 
 class UserViewModel(application: Application) : AndroidViewModel(application) {
@@ -26,7 +26,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     private var _isLoggedIn = MutableLiveData<Boolean>()
     val isLoggedIn: LiveData<Boolean> get() = _isLoggedIn
 
-    private var _status = MutableLiveData(UserLoading.INIT)
+    private var _status = MutableLiveData(UserLoading.LOADING)
     val status: LiveData<UserLoading> get() = _status
 
     fun login(email: String, password: String) {
@@ -60,19 +60,20 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun logout() {
+        _status.value = UserLoading.LOADING
+
         prefs.edit().clear().apply()
         _isLoggedIn.value = false
 
-        _status.value = UserLoading.FINISH
         viewModelScope.launch {
             try {
                 val result =
                     DiskoperindagApiService.UserApi.retrofitService.logout(_currentUser.value!!.token)
                 _currentUser.value?.token = ""
-
-
+                _status.value = UserLoading.SUCCESS
                 Log.d("USERVIEWMODEL OKCEPTION", result.toString())
             } catch (e: Exception) {
+                _status.value = UserLoading.ERROR
                 Log.d("USERVIEWMODEL ERROR LOL!", "$e")
             }
         }

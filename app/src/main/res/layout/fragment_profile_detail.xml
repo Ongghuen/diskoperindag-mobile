@@ -1,41 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginHorizontal="20dp"
+    android:layout_marginVertical="10dp"
     tools:context=".fragments.mainscreen.ProfileDetailFragment">
 
     <TextView
-        android:id="@+id/namaUser"
+        android:id="@+id/placeholder_gantiPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="Ganti Password"
+        android:textSize="26sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/nikUser"
+        android:id="@+id/placeholder_descGantiPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginRight="40dp"
+        android:text="Password baru harus berbeda dengan password yang sebelumnya digunakan."
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/namaUser"
-        />
+        app:layout_constraintTop_toBottomOf="@id/placeholder_gantiPassword" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputLayout_currentPassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        app:boxBackgroundColor="@null"
+        app:endIconMode="password_toggle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/placeholder_descGantiPassword">
+
+        <EditText
+            android:id="@+id/field_currentPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password Saat Ini"
+            android:inputType="textPassword"
+            android:paddingStart="0dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputLayout_newPassword"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        app:boxBackgroundColor="@null"
+        app:endIconMode="password_toggle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inputLayout_currentPassword">
+
+        <EditText
+            android:id="@+id/field_newPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password baru"
+            android:inputType="textPassword"
+            android:paddingStart="0dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/inputLayout_newPasswordVerify"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        app:boxBackgroundColor="@null"
+        app:endIconMode="password_toggle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/inputLayout_newPassword">
+
+        <EditText
+            android:id="@+id/field_newPasswordVerify"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Konfirmasi password"
+            android:inputType="textPassword"
+            android:paddingStart="0dp" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="42dp"
+        android:paddingVertical="12dp"
+        android:text="Simpan"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputLayout_newPasswordVerify" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/dividerOne"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/btn_submit" />
 
     <TextView
-        android:id="@+id/alamatUser"
+        android:id="@+id/placeholder_logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Logout"
+        android:textSize="26sp"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nikUser"
-        />
+        app:layout_constraintTop_toBottomOf="@id/dividerOne" />
 
     <TextView
-        android:id="@+id/telpUser"
+        android:id="@+id/placeholder_descLogout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginRight="40dp"
+        android:text="Anda akan keluar dan terlempar ke layar login."
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/alamatUser"
+        app:layout_constraintTop_toBottomOf="@id/placeholder_logout" />
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:paddingHorizontal="42dp"
+        android:paddingVertical="12dp"
+        android:text="Logout"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/placeholder_descLogout"
+        app:layout_constraintEnd_toEndOf="parent"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
