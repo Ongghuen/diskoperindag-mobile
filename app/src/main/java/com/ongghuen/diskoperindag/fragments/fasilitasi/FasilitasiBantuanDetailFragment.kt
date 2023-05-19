@@ -37,6 +37,11 @@ class FasilitasiBantuanDetailFragment : Fragment() {
             binding.rvItemBantuan.adapter = BantuanDetailAdapter(detail.item_bantuan)
             binding.rvItemBantuan.layoutManager = LinearLayoutManager(requireContext())
             binding.rvItemBantuan.setHasFixedSize(true)
+
+            binding.date.text = detail.tahun_pemberian
+            binding.namaJenisUsaha.text = detail.jenis_usaha
+            binding.namaKoordinator.text = detail.koordinator
+            binding.namaSumberAnggaran.text = detail.sumber_anggaran
         }
     }
 }
