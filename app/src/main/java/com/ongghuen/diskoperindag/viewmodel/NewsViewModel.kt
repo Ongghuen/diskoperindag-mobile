@@ -65,6 +65,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun getFavorite() {
+        _status.value = NewsLoading.LOADING
         viewModelScope.launch {
             try {
                 val favorites = DiskoperindagApiService.UserApi.retrofitService.getNewsFavorite(
@@ -74,6 +75,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
                 )
                 Log.d("CEPTION FAV", favorites.toString())
                 _favorites.value = favorites
+                _status.value = NewsLoading.SUCCESS
             } catch (e: Exception) {
                 _status.value = NewsLoading.ERROR
             }

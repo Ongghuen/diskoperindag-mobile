@@ -37,23 +37,28 @@ class NewsDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        newsViewModel.status.observe(viewLifecycleOwner) { status ->
+            when(status) {
+                NewsLoading.LOADING -> {
+                    binding.containerStatus.visibility = View.VISIBLE
+                    binding.networkStatus.setImageResource(R.drawable.loading_animation)
+                }
+                NewsLoading.ERROR -> {
+                    binding.containerStatus.visibility = View.VISIBLE
+                    binding.networkStatus.setImageResource(R.drawable.ic_connection_error)
+                }
+                else -> {
+                    binding.containerStatus.visibility = View.GONE
+                }
+            }
+        }
+
         newsViewModel.getNews(arguments?.getInt("id").toString())
 
         newsViewModel.detail.observe(viewLifecycleOwner) { detail ->
             binding.subTitle.text = detail.subjudul
             binding.body.text = detail.body
             binding.date.text = convertTimestamp(detail.created_at)
-        }
-
-        newsViewModel.status.observe(viewLifecycleOwner) { status ->
-           when(status) {
-               NewsLoading.ERROR -> {
-                   binding.containerError.visibility = View.VISIBLE
-               }
-               else -> {
-                   binding.containerError.visibility = View.GONE
-               }
-           }
         }
 
         val checkId = newsViewModel.favorites.map { fav -> fav.map { it.id } }

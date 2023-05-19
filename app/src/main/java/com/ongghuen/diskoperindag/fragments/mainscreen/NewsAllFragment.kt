@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ongghuen.diskoperindag.R
 import com.ongghuen.diskoperindag.adapters.NewsAdapter
 import com.ongghuen.diskoperindag.databinding.FragmentNewsAllBinding
+import com.ongghuen.diskoperindag.viewmodel.NewsLoading
 import com.ongghuen.diskoperindag.viewmodel.NewsViewModel
 
 class NewsAllFragment : Fragment() {
@@ -29,6 +30,23 @@ class NewsAllFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        newsViewModel.status.observe(viewLifecycleOwner) { status ->
+            when(status) {
+                NewsLoading.LOADING -> {
+                    binding.containerStatus.visibility = View.VISIBLE
+                    binding.networkStatus.setImageResource(R.drawable.loading_animation)
+                }
+                NewsLoading.ERROR -> {
+                    binding.containerStatus.visibility = View.VISIBLE
+                    binding.networkStatus.setImageResource(R.drawable.ic_connection_error)
+                }
+                else -> {
+                    binding.containerStatus.visibility = View.GONE
+                }
+            }
+        }
+
         newsViewModel.news.observe(viewLifecycleOwner) { news ->
             binding.newsRecyclerView.adapter =
                 NewsAdapter(newsViewModel.news.value!!.reversed(), R.layout.news_list_vertical)

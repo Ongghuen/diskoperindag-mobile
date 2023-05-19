@@ -171,7 +171,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/containerError"
+            android:id="@+id/containerStatus"
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="parent"
@@ -182,7 +182,7 @@
             >
 
             <ImageView
-                android:id="@+id/networkErrorBg"
+                android:id="@+id/networkStatusBg"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:src="?android:navigationBarColor"
@@ -193,7 +193,7 @@
                 />
 
             <ImageView
-                android:id="@+id/networkError"
+                android:id="@+id/networkStatus"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginBottom="100dp"
@@ -209,9 +209,9 @@
                 android:layout_height="wrap_content"
                 android:text="Tidak ada koneksi internet."
                 android:layout_marginTop="10dp"
-                app:layout_constraintStart_toStartOf="@id/networkError"
-                app:layout_constraintTop_toBottomOf="@id/networkError"
-                app:layout_constraintEnd_toEndOf="@id/networkError"
+                app:layout_constraintStart_toStartOf="@id/networkStatus"
+                app:layout_constraintTop_toBottomOf="@id/networkStatus"
+                app:layout_constraintEnd_toEndOf="@id/networkStatus"
                 />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
