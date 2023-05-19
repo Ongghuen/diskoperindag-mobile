@@ -25,6 +25,7 @@ class BantuanDetailAdapter(private val data: List<BantuanDetail.ItemBantuan>) :
 
     class BantuanDetailViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         val namaItem: TextView = view.findViewById(R.id.namaItem)
+        val deskripsiItem: TextView = view.findViewById(R.id.deskripsiItem)
         val kuantitasItem: TextView = view.findViewById(R.id.kuantitasItem)
     }
 
@@ -38,7 +39,8 @@ class BantuanDetailAdapter(private val data: List<BantuanDetail.ItemBantuan>) :
         val item = data[position]
 
         holder.namaItem.text = item.nama_item
-        holder.kuantitasItem.text = item.pivot.kuantitas.toString()
+        holder.deskripsiItem.text = item.deskripsi
+        holder.kuantitasItem.text = item.pivot.kuantitas.toString() + "x"
     }
 
     override fun getItemCount(): Int {
