@@ -27,7 +27,12 @@ class SertifikasiAdapter(private val data: List<Sertifikasi>) :
     }
 
     class SertifikasiViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        val namaSertifikasi: TextView = view.findViewById(R.id.namaSertifikasi)
+        val container: View = view.findViewById(R.id.container)
+
+        val namaSertifikasi: TextView = view.findViewById(R.id.fasilitasiName)
+        val noSertifikasi: TextView = view.findViewById(R.id.nomorSertifikat)
+        val tanggalTerbit: TextView = view.findViewById(R.id.detail_tanggal_terbit)
+        val tanggalKadaluarsa: TextView = view.findViewById(R.id.detail_tanggal_kadaluarsa)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SertifikasiViewHolder {
@@ -40,7 +45,11 @@ class SertifikasiAdapter(private val data: List<Sertifikasi>) :
         val item = data[position]
 
         holder.namaSertifikasi.text = item.nama
-        holder.namaSertifikasi.setOnClickListener {
+        holder.noSertifikasi.text = item.no_sertifikat
+        holder.tanggalTerbit.text = item.tanggal_terbit
+        holder.tanggalKadaluarsa.text = item.kadaluarsa_penyelenggara
+
+        holder.container.setOnClickListener {
             val toDetail = FasilitasiSertifikasiFragmentDirections.actionFasilitasiSertifikasiFragmentToFasilitasiSertifikasiDetailFragment(
                 noSertifikat = item.no_sertifikat,
                 nama = item.nama,

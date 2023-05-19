@@ -29,8 +29,13 @@ class FasilitasiBantuanFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         fasilitasiViewModel.bantuan.observe(viewLifecycleOwner) { bantuan ->
-            binding.rvBantuan.adapter = BantuanAdapter(bantuan)
+            binding.rvBantuan.adapter = BantuanAdapter(bantuan.reversed())
             binding.rvBantuan.setHasFixedSize(true)
+
+            binding.swipeRefresh.setOnRefreshListener {
+                fasilitasiViewModel.getBantuan()
+                binding.swipeRefresh.isRefreshing = false
+            }
         }
     }
 }

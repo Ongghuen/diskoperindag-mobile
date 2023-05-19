@@ -1,19 +1,98 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_marginVertical="10dp">
 
-    <Button
-        android:id="@+id/namaSertifikasi"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="Hey lol"
-        android:gravity="left|center_vertical"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:src="@color/blueish"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:shapeAppearanceOverlay="@style/RoundedSquare" />
+
+    <TextView
+        android:id="@+id/fasilitasiName"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginVertical="20dp"
+        android:ellipsize="end"
+        android:maxEms="5"
+        android:singleLine="false"
+        android:text="Nama Sertifikasi"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/container"
+        app:layout_constraintTop_toTopOf="@id/container" />
+
+    <TextView
+        android:id="@+id/detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:text="❯"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/fasilitasiName"
+        app:layout_constraintEnd_toEndOf="@id/container"
+        app:layout_constraintTop_toTopOf="@id/fasilitasiName" />
+
+    <TextView
+        android:id="@+id/nomorSertifikat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="213910391093103"
+        android:textColor="@color/white"
+        android:textSize="16dp"
+        app:layout_constraintStart_toStartOf="@id/fasilitasiName"
+        app:layout_constraintTop_toBottomOf="@id/fasilitasiName" />
+
+    <TextView
+        android:id="@+id/tanggal_terbit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tanggal Terbit"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/detail_tanggal_terbit"
+        app:layout_constraintStart_toStartOf="@id/detail_tanggal_terbit" />
+
+    <TextView
+        android:id="@+id/detail_tanggal_terbit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="20dp"
+        android:text="Tanggal"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/container"
+        app:layout_constraintStart_toStartOf="@id/fasilitasiName" />
+
+    <TextView
+        android:id="@+id/tanggal_kadaluarsa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="50dp"
+        android:text="Tanggal Kadaluarsa"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@id/tanggal_terbit"
+        app:layout_constraintStart_toEndOf="@+id/tanggal_terbit"
+        app:layout_constraintTop_toTopOf="@id/tanggal_terbit" />
+
+    <TextView
+        android:id="@+id/detail_tanggal_kadaluarsa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nama"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toStartOf="@+id/tanggal_kadaluarsa"
+        app:layout_constraintTop_toBottomOf="@+id/tanggal_kadaluarsa" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

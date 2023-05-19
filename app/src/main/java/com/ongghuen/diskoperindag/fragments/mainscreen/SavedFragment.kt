@@ -24,7 +24,7 @@ class SavedFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentSavedBinding.inflate(inflater, container, false)
         return binding.root
@@ -44,7 +44,7 @@ class SavedFragment : Fragment() {
 
         binding.swipeRefresh.setOnRefreshListener {
             newsViewModel.getFavorite()
-            binding.swipeRefresh.setRefreshing(false)
+            binding.swipeRefresh.isRefreshing = false
         }
     }
 

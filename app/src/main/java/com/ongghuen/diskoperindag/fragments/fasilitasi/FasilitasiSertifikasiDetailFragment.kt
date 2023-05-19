@@ -26,9 +26,9 @@ class FasilitasiSertifikasiDetailFragment : Fragment() {
 
         arguments?.let {
             binding.noSertifikasi.text = it.getString("no_sertifikat")
-            binding.nama.text = it.getString("nama")
+            binding.namaSertifikat.text = it.getString("nama")
+            binding.namaLengkapSertifikat.text = it.getString("nama")
             binding.tanggalTerbit.text = it.getString("tanggal_terbit")
-            binding.kadaluarsaPenyelenggara.text = it.getString("kadaluarsa_penyelenggara")
             binding.keterangan.text = it.getString("keterangan")
         }
     }

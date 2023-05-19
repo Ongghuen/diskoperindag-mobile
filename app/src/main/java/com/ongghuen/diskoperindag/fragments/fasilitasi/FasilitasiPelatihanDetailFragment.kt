@@ -24,10 +24,12 @@ class FasilitasiPelatihanDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         arguments?.let {
-            binding.nama.text = it.getString("nama")
-            binding.penyelenggara.text = it.getString("penyelenggara")
-            binding.tanggalPelaksanaan.text = it.getString("tanggal_pelaksanaan")
+            binding.namaPelatihan.text = it.getString("nama")
+            binding.namaLengkapPelatihan.text = it.getString("nama")
             binding.tempat.text = it.getString("tempat")
+            binding.detailTempat.text = it.getString("tempat")
+            binding.tanggalPelaksanaan.text = it.getString("tanggal_pelaksanaan")
+            binding.detailPenyelenggara.text = it.getString("penyelenggara")
         }
     }
 }

@@ -94,6 +94,7 @@
         android:id="@+id/nama_koordinator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:singleLine="false"
         android:text="Nama Koordinator"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@id/koordinator"

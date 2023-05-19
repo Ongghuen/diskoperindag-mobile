@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginHorizontal="20dp"
     tools:context=".fragments.fasilitasi.FasilitasiPelatihanFragment">
 
     <!-- TODO: Update blank fragment layout -->

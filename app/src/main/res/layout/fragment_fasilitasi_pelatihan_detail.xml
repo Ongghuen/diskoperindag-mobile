@@ -4,37 +4,150 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingHorizontal="20dp"
+    android:paddingVertical="20dp"
     tools:context=".fragments.fasilitasi.FasilitasiPelatihanDetailFragment">
 
-    <TextView
-        android:id="@+id/nama"
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Nama"
+        android:layout_height="50dp"
+        android:src="@color/yellowish"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/RoundedSquare" />
+
 
     <TextView
-        android:id="@+id/penyelenggara"
-        android:layout_width="match_parent"
+        android:id="@+id/namaPelatihan"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:text="Penyelenggara"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/nama" />
-
-    <TextView
-        android:id="@+id/tanggalPelaksanaan"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Tanggal Pelaksanaan"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/penyelenggara" />
+        android:textStyle="bold"
+        android:layout_marginLeft="20dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:singleLine="false"
+        android:text="Nama Pelatihan"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/container"
+        app:layout_constraintEnd_toStartOf="@id/tempat"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="@id/container"
+        app:layout_constraintTop_toTopOf="@id/container" />
 
     <TextView
         android:id="@+id/tempat"
-        android:layout_width="match_parent"
+        android:layout_width="90dp"
         android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:textAlignment="textEnd"
         android:text="Tempat"
+        android:lines="1"
+        android:ellipsize="end"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@id/container"
+        app:layout_constraintEnd_toEndOf="@id/container"
+        app:layout_constraintStart_toEndOf="@id/namaPelatihan"
+        app:layout_constraintTop_toTopOf="@id/container" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/dividerOne"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@+id/container" />
+
+    <TextView
+        android:id="@+id/detailPelatihan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="Detail Pelatihan"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dividerOne"
+        />
+
+
+    <TextView
+        android:id="@+id/namaLengkapPelatihan"
+        android:layout_marginTop="20dp"
+        android:layout_width="200dp"
+        android:singleLine="false"
+        android:layout_height="wrap_content"
+        android:textAlignment="textEnd"
+        android:text="Nama Lengkap Pelatihan"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detailPelatihan"
+        />
+
+    <TextView
+        android:id="@+id/tanggalPelaksanaan"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="textEnd"
+        android:text="Tanggal Pelaksanaan"
+        app:layout_constraintStart_toStartOf="@id/namaLengkapPelatihan"
+        app:layout_constraintTop_toBottomOf="@id/namaLengkapPelatihan"
+        app:layout_constraintEnd_toEndOf="@id/namaLengkapPelatihan"
+        />
+
+    <TextView
+        android:id="@+id/detailTempat"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="textEnd"
+        android:text="Tempat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tanggalPelaksanaan"
         app:layout_constraintTop_toBottomOf="@id/tanggalPelaksanaan" />
+
+    <TextView
+        android:id="@+id/detailPenyelenggara"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textAlignment="textEnd"
+        android:text="Penyelenggara"
+        app:layout_constraintStart_toStartOf="@+id/detailTempat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/detailTempat" />
+
+    <TextView
+        android:id="@+id/placeholder_nama"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nama Pelatihan: "
+        app:layout_constraintStart_toStartOf="@id/detailPelatihan"
+        app:layout_constraintBottom_toBottomOf="@id/namaLengkapPelatihan"
+        app:layout_constraintTop_toTopOf="@id/namaLengkapPelatihan"/>
+
+    <TextView
+        android:id="@+id/placeholder_terbit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tanggal Pelaksanaan: "
+        app:layout_constraintStart_toStartOf="@id/detailPelatihan"
+        app:layout_constraintBottom_toBottomOf="@id/tanggalPelaksanaan"
+        app:layout_constraintTop_toTopOf="@id/tanggalPelaksanaan"/>
+
+    <TextView
+        android:id="@+id/placeholder_kadaluarsa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Tempat: "
+        app:layout_constraintStart_toStartOf="@id/detailPelatihan"
+        app:layout_constraintBottom_toBottomOf="@id/detailTempat"
+        app:layout_constraintTop_toTopOf="@id/detailTempat"/>
+
+    <TextView
+        android:id="@+id/placeholder_penyelenggara"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Penyelenggara: "
+        app:layout_constraintStart_toStartOf="@id/detailPelatihan"
+        app:layout_constraintBottom_toBottomOf="@id/detailPenyelenggara"
+        app:layout_constraintTop_toTopOf="@id/detailPenyelenggara"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -26,7 +26,12 @@ class PelatihanAdapter(private val data: List<Pelatihan>) :
     }
 
     class PelatihanViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
-        val namaPelatihan: TextView = view.findViewById(R.id.namaPelatihan)
+        val container: View = view.findViewById(R.id.container)
+
+        val namaPelatihan: TextView = view.findViewById(R.id.fasilitasiName)
+        val penyelenggara: TextView = view.findViewById(R.id.detail_penyelenggara)
+        val tanggalPelaksanaan: TextView = view.findViewById(R.id.detail_tanggal_pelaksanaan)
+        val tempat: TextView = view.findViewById(R.id.tempat)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PelatihanViewHolder {
@@ -39,7 +44,11 @@ class PelatihanAdapter(private val data: List<Pelatihan>) :
         val item = data[position]
 
         holder.namaPelatihan.text = item.nama
-        holder.namaPelatihan.setOnClickListener {
+        holder.penyelenggara.text = item.penyelenggara
+        holder.tanggalPelaksanaan.text = item.tanggal_pelaksanaan
+        holder.tempat.text = item.tempat
+
+        holder.container.setOnClickListener {
             val toDetail =
                 FasilitasiPelatihanFragmentDirections.actionFasilitasiPelatihanFragmentToFasilitasiPelatihanDetailFragment(
                     nama = item.nama,
