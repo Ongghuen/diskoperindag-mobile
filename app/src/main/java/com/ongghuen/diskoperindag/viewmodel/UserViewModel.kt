@@ -18,7 +18,7 @@ enum class UserLoading {
 }
 
 enum class ChangePassLoading {
-    LOADING, SUCCESS, ERROR
+    LOADING, SUCCESS, ERROR, FINISH
 }
 
 class UserViewModel(application: Application) : AndroidViewModel(application) {
@@ -108,9 +108,11 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                     )
                 _currentUser.value?.token = ""
                 _statusPass.value = ChangePassLoading.SUCCESS
+                _statusPass.value = ChangePassLoading.FINISH
                 Log.d("USERVIEWMODEL OKCEPTION", result.toString())
             } catch (e: Exception) {
                 _statusPass.value = ChangePassLoading.ERROR
+                _statusPass.value = ChangePassLoading.FINISH
                 Log.d("USERVIEWMODEL ERROR LOL!", "$e")
             }
         }
