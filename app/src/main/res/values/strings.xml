@@ -1,11 +1,5 @@
 <resources>
-    <string name="app_name">Diskoperindag</string>
-
-    <string name="news1">Ini adalah info 1</string>
-    <string name="news2">Ini adalah info 2</string>
-    <string name="news3">Ini adalah info 3</string>
+    <string name="app_name">Situansilat</string>
 
     <string name="txt_login">Login</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

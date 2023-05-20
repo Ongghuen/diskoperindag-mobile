@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "685877126356",
+    "project_id": "ongghuen-fd16d",
+    "storage_bucket": "ongghuen-fd16d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:685877126356:android:392994ed2e718e60164741",
+        "android_client_info": {
+          "package_name": "com.ongghuen.diskoperindag"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "685877126356-15l12sc7h82b1j0hqneg1qs60gvrcv6k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgZDbCsV1eqSbz7-JAwjgdkcH3Ofmg2sE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "685877126356-15l12sc7h82b1j0hqneg1qs60gvrcv6k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

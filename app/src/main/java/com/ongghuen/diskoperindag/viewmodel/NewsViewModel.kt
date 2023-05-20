@@ -38,6 +38,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
                 val news = DiskoperindagApiService.UserApi.retrofitService.getNews()
                 _news.value = news
                 _status.value = NewsLoading.SUCCESS
+                Log.d("SUCCCEPTION", news.toString())
             } catch (e: Exception) {
                 Log.d("ERRORCEPTION", e.toString())
                 _status.value = NewsLoading.ERROR
@@ -77,6 +78,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
                 _status.value = NewsLoading.SUCCESS
             } catch (e: Exception) {
                 _status.value = NewsLoading.ERROR
+                Log.d("ERROR FAV", favorites.toString())
             }
         }
     }
@@ -112,8 +114,4 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    init {
-        getNews()
-        getFavorite()
-    }
 }

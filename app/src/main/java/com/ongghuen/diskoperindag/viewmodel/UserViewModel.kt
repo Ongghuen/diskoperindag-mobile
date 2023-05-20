@@ -14,11 +14,11 @@ import com.ongghuen.diskoperindag.network.DiskoperindagApiService
 import kotlinx.coroutines.launch
 
 enum class UserLoading {
-    LOADING, SUCCESS, ERROR, FINISH
+    INIT, LOADING, SUCCESS, ERROR, FINISH
 }
 
 enum class ChangePassLoading {
-    LOADING, SUCCESS, ERROR, FINISH
+    INIT, LOADING, SUCCESS, ERROR, FINISH
 }
 
 class UserViewModel(application: Application) : AndroidViewModel(application) {
@@ -29,10 +29,10 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     private var _currentUser = MutableLiveData<User>()
     val currentUser: LiveData<User> get() = _currentUser
 
-    private var _isLoggedIn = MutableLiveData<Boolean>()
+    private var _isLoggedIn = MutableLiveData(false)
     val isLoggedIn: LiveData<Boolean> get() = _isLoggedIn
 
-    private var _status = MutableLiveData(UserLoading.LOADING)
+    private var _status = MutableLiveData(UserLoading.INIT)
     val status: LiveData<UserLoading> get() = _status
     private var _statusPass = MutableLiveData(ChangePassLoading.LOADING)
     val statusPass: LiveData<ChangePassLoading> get() = _statusPass
@@ -59,6 +59,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                 }
 
                 saveSession(isLoggedIn.value!!)
+                _status.value = UserLoading.FINISH
 
             } catch (e: Exception) {
                 logout()
@@ -82,6 +83,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                 Log.d("USERVIEWMODEL OKCEPTION", result.toString())
             } catch (e: Exception) {
                 _status.value = UserLoading.ERROR
+                _status.value = UserLoading.FINISH
                 Log.d("USERVIEWMODEL ERROR LOL!", "$e")
             }
         }

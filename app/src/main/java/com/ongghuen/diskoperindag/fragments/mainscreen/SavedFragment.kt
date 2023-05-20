@@ -34,6 +34,7 @@ class SavedFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         newsViewModel.status.observe(viewLifecycleOwner) { status ->
             when(status) {
                 NewsLoading.LOADING -> {
