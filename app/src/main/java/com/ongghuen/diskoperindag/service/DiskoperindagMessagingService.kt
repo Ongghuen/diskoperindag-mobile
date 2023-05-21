@@ -8,6 +8,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import com.ongghuen.diskoperindag.R
 
 class DiskoperindagMessagingService : FirebaseMessagingService() {
 
@@ -20,10 +21,31 @@ class DiskoperindagMessagingService : FirebaseMessagingService() {
     override fun onMessageReceived(message: RemoteMessage) {
         super.onMessageReceived(message)
 
-        var builder = NotificationCompat.Builder(this, "Test")
-            .setContentTitle(message.notification!!.title.toString())
-            .setContentText(message.notification!!.body.toString())
+        Log.d(
+            "CEPTION FIREBASE",
+            "Message: ${message.notification!!.title}: ${message.notification!!.body}"
+        )
+
+        val notificationBuilder = NotificationCompat.Builder(this, "diskoperindag")
+            .setSmallIcon(R.drawable.logo)
+            .setContentTitle("KONTOL")
+            .setContentText("This is a sample notification.")
             .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+
+        with(NotificationManagerCompat.from(this)) {
+            if (ActivityCompat.checkSelfPermission(
+                    applicationContext,
+                    Manifest.permission.POST_NOTIFICATIONS
+                ) != PackageManager.PERMISSION_GRANTED
+            ) {
+                Log.d(
+                    "CEPTION FIREBASE",
+                    "Message: ${message.notification!!.title}: ${message.notification!!.body}"
+                )
+                return
+            }
+            notify(1, notificationBuilder.build())
+        }
     }
 
 }

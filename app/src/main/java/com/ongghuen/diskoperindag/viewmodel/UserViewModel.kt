@@ -14,7 +14,7 @@ import com.ongghuen.diskoperindag.network.DiskoperindagApiService
 import kotlinx.coroutines.launch
 
 enum class UserLoading {
-    INIT, LOADING, SUCCESS, ERROR, FINISH
+    INIT, LOADING, SUCCESS, ERROR, FINISH, WRONG_PASSWORD
 }
 
 enum class ChangePassLoading {
@@ -62,7 +62,8 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                 _status.value = UserLoading.FINISH
 
             } catch (e: Exception) {
-                logout()
+                _status.value = UserLoading.WRONG_PASSWORD
+                _status.value = UserLoading.FINISH
             }
         }
 
@@ -72,18 +73,17 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         _status.value = UserLoading.LOADING
 
         prefs.edit().clear().apply()
-        _isLoggedIn.value = false
+        _status.value = UserLoading.FINISH
 
         viewModelScope.launch {
             try {
                 val result =
                     DiskoperindagApiService.UserApi.retrofitService.logout(_currentUser.value!!.token)
+                _isLoggedIn.value = false
                 _currentUser.value?.token = ""
-                _status.value = UserLoading.FINISH
+                Log.d("USERVIEWMODEL STATE USER ->", isLoggedIn.value.toString())
                 Log.d("USERVIEWMODEL OKCEPTION", result.toString())
             } catch (e: Exception) {
-                _status.value = UserLoading.ERROR
-                _status.value = UserLoading.FINISH
                 Log.d("USERVIEWMODEL ERROR LOL!", "$e")
             }
         }

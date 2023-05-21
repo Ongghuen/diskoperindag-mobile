@@ -23,7 +23,7 @@ import com.ongghuen.diskoperindag.viewmodel.UserViewModel
 
 class DashboardFragment : Fragment() {
 
-    private val userViewModel: UserViewModel by viewModels()
+    private val userViewModel: UserViewModel by activityViewModels()
     private val newsViewModel: NewsViewModel by activityViewModels()
 
     private var _binding: FragmentDashboardBinding? = null
@@ -41,16 +41,14 @@ class DashboardFragment : Fragment() {
             childFragmentManager.findFragmentById(R.id.fg_container) as? NavHostFragment
         navController = nestedNavHostFragment?.navController!!
 
-        val prefs = activity?.getSharedPreferences("diskoperindag", Context.MODE_PRIVATE)
-        val isLoggedIn = prefs!!.getBoolean("IsLoggedIn", false)
-        Log.d("VALUECHECK", isLoggedIn.toString())
-
         binding.apply {
             toolbar.setupWithNavController(navController)
         }
 
         setupSmoothBottomBar()
 
+        newsViewModel.getNews()
+        newsViewModel.getFavorite()
 
         userViewModel.isLoggedIn.observe(viewLifecycleOwner) { isLoggedIn ->
             if (!isLoggedIn) {
@@ -58,9 +56,6 @@ class DashboardFragment : Fragment() {
                 findNavController().navigate(toLogin)
             }
         }
-
-        newsViewModel.getNews()
-        newsViewModel.getFavorite()
 
         return binding.root
     }
