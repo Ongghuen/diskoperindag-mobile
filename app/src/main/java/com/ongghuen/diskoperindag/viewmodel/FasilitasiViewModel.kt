@@ -110,10 +110,14 @@ class FasilitasiViewModel(application: Application) : AndroidViewModel(applicati
         }
     }
 
-    init {
+    fun getAll(){
         getBantuan()
         getSertifikasi()
         getPelatihan()
+    }
+
+    init {
+        getAll()
     }
 
 }

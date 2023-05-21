@@ -12,7 +12,7 @@ import com.ongghuen.diskoperindag.network.DiskoperindagApiService
 import kotlinx.coroutines.launch
 
 enum class NewsLoading {
-    LOADING, SUCCESS, ERROR
+    LOADING, SUCCESS, ERROR, SAVED_LOADING, SAVED_ERROR
 }
 
 class NewsViewModel(application: Application) : AndroidViewModel(application) {
@@ -37,10 +37,10 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
             try {
                 val news = DiskoperindagApiService.UserApi.retrofitService.getNews()
                 _news.value = news
-                _status.value = NewsLoading.SUCCESS
                 Log.d("SUCCCEPTION", news.toString())
             } catch (e: Exception) {
                 Log.d("ERRORCEPTION", e.toString())
+                _status.value = NewsLoading.SAVED_ERROR
                 _status.value = NewsLoading.ERROR
             }
         }
@@ -66,6 +66,9 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun getFavorite() {
+        _status.value = NewsLoading.SAVED_LOADING
+        _status.value = NewsLoading.LOADING
+
         viewModelScope.launch {
             try {
                 val favorites = DiskoperindagApiService.UserApi.retrofitService.getNewsFavorite(

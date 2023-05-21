@@ -39,10 +39,12 @@ class NewsFragment : Fragment() {
                 NewsLoading.LOADING -> {
                     binding.containerNetwork.visibility = View.VISIBLE
                     binding.networkStatusImage.setImageResource(R.drawable.loading_animation)
+                    binding.retry.visibility = View.GONE
                 }
                 NewsLoading.ERROR -> {
                     binding.containerNetwork.visibility = View.VISIBLE
                     binding.networkStatusImage.setImageResource(R.drawable.ic_connection_error)
+                    binding.retry.visibility = View.VISIBLE
                 }
                 else -> {
                     binding.containerNetwork.visibility = View.GONE
@@ -84,6 +86,11 @@ class NewsFragment : Fragment() {
         binding.swipeRefresh.setOnRefreshListener {
             newsViewModel.getNews()
             binding.swipeRefresh.setRefreshing(false)
+        }
+
+        binding.retry.setOnClickListener {
+            newsViewModel.getNews()
+            newsViewModel.getFavorite()
         }
 
         binding.tvMore.setOnClickListener {

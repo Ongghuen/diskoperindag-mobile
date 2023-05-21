@@ -14,7 +14,7 @@ import com.ongghuen.diskoperindag.network.DiskoperindagApiService
 import kotlinx.coroutines.launch
 
 enum class UserLoading {
-    INIT, LOADING, SUCCESS, ERROR, FINISH, WRONG_PASSWORD
+    INIT, LOADING, SUCCESS, ERROR, FINISH, WRONG_PASSWORD, LOGOUT_ERROR
 }
 
 enum class ChangePassLoading {
@@ -63,17 +63,21 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
             } catch (e: Exception) {
                 _status.value = UserLoading.WRONG_PASSWORD
-                _status.value = UserLoading.FINISH
+                _status.value = UserLoading.ERROR
             }
         }
 
     }
 
+    fun retryCachedLogin() {
+        login(
+            prefs.getString("email", "").toString(),
+            prefs.getString("password", "").toString()
+        )
+    }
+
     fun logout() {
         _status.value = UserLoading.LOADING
-
-        prefs.edit().clear().apply()
-        _status.value = UserLoading.FINISH
 
         viewModelScope.launch {
             try {
@@ -81,10 +85,14 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                     DiskoperindagApiService.UserApi.retrofitService.logout(_currentUser.value!!.token)
                 _isLoggedIn.value = false
                 _currentUser.value?.token = ""
-                Log.d("USERVIEWMODEL STATE USER ->", isLoggedIn.value.toString())
+
+                prefs.edit().clear().apply()
+
                 Log.d("USERVIEWMODEL OKCEPTION", result.toString())
+                _status.value = UserLoading.FINISH
             } catch (e: Exception) {
                 Log.d("USERVIEWMODEL ERROR LOL!", "$e")
+                _status.value = UserLoading.LOGOUT_ERROR
             }
         }
     }
@@ -92,6 +100,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     fun saveSession(isLoggedIn: Boolean) {
         with(prefs.edit()) {
             putBoolean("isLoggedIn", isLoggedIn)
+            putString("name", currentUser.value!!.user!!.name)
             putString("token", currentUser.value!!.token)
             apply()
         }

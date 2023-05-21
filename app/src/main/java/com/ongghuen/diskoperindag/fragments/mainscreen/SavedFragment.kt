@@ -37,18 +37,30 @@ class SavedFragment : Fragment() {
 
         newsViewModel.status.observe(viewLifecycleOwner) { status ->
             when(status) {
+                NewsLoading.SAVED_LOADING -> {
+                    binding.networkStatus.setImageResource(R.drawable.loading_animation)
+                }
                 NewsLoading.LOADING -> {
                     binding.containerStatus.visibility = View.VISIBLE
                     binding.networkStatus.setImageResource(R.drawable.loading_animation)
+                    binding.retry.visibility = View.GONE
                 }
                 NewsLoading.ERROR -> {
                     binding.containerStatus.visibility = View.VISIBLE
                     binding.networkStatus.setImageResource(R.drawable.ic_connection_error)
                 }
+                NewsLoading.SAVED_ERROR -> {
+                    binding.retry.visibility = View.VISIBLE
+                }
                 else -> {
                     binding.containerStatus.visibility = View.GONE
                 }
             }
+        }
+
+        binding.retry.setOnClickListener {
+            newsViewModel.getNews()
+            newsViewModel.getFavorite()
         }
 
         newsViewModel.favorites.observe(viewLifecycleOwner) { favorites ->

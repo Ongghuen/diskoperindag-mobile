@@ -182,6 +182,17 @@
             app:layout_constraintBottom_toBottomOf="parent"
             />
 
+        <TextView
+            android:id="@+id/retry"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Coba Lagi?"
+            android:textColor="?colorPrimary"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="@id/networkStatusImage"
+            app:layout_constraintStart_toStartOf="@id/networkStatusImage"
+            app:layout_constraintTop_toBottomOf="@id/networkStatusImage"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

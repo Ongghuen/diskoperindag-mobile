@@ -1,5 +1,8 @@
 package com.ongghuen.diskoperindag.fragments.mainscreen
 
+import android.app.AlertDialog
+import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,10 +11,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
-import com.ongghuen.diskoperindag.R
 import com.ongghuen.diskoperindag.databinding.FragmentProfileDetailBinding
 import com.ongghuen.diskoperindag.model.ChangePasswordRequest
 import com.ongghuen.diskoperindag.viewmodel.ChangePassLoading
+import com.ongghuen.diskoperindag.viewmodel.UserLoading
 import com.ongghuen.diskoperindag.viewmodel.UserViewModel
 
 class ProfileDetailFragment : Fragment() {
@@ -45,6 +48,16 @@ class ProfileDetailFragment : Fragment() {
             }
         }
 
+        viewModel.status.observe(viewLifecycleOwner) { status ->
+            when(status) {
+                UserLoading.LOGOUT_ERROR -> {
+                    Toast.makeText(requireContext(), "Logout gagal! pastikan anda mempunyai koneksi internet", Toast.LENGTH_SHORT).show()
+                }
+
+                else -> {}
+            }
+        }
+
         viewModel.currentUser.observe(viewLifecycleOwner) { user ->
             binding.btnSubmit.setOnClickListener {
                 val currentPassword = binding.fieldCurrentPassword.text.toString()
@@ -69,8 +82,23 @@ class ProfileDetailFragment : Fragment() {
 
             }
             binding.btnLogout.setOnClickListener {
-                viewModel.logout()
+                logoutDialog()
             }
         }
+    }
+
+    private fun logoutDialog() {
+        val alertDialog = AlertDialog.Builder(requireContext())
+        alertDialog.setTitle("Logout")
+        alertDialog.setMessage("Anda akan keluar dari dashboard dan langsung terlempar ke layar login.")
+        alertDialog.setPositiveButton("OK") { dialogInterface: DialogInterface, _: Int ->
+            dialogInterface.dismiss()
+            viewModel.logout()
+        }
+        alertDialog.setNegativeButton("Cancel") { dialogInterface: DialogInterface, _: Int ->
+            dialogInterface.dismiss()
+        }
+        alertDialog.setCancelable(false)
+        alertDialog.show()
     }
 }

@@ -1,5 +1,7 @@
 package com.ongghuen.diskoperindag.fragments.mainscreen
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import com.ongghuen.diskoperindag.R
 import com.ongghuen.diskoperindag.databinding.FragmentProfileBinding
 import com.ongghuen.diskoperindag.viewmodel.FasilitasiViewModel
-import com.ongghuen.diskoperindag.viewmodel.NewsViewModel
 import com.ongghuen.diskoperindag.viewmodel.UserLoading
 import com.ongghuen.diskoperindag.viewmodel.UserViewModel
 
@@ -18,15 +19,17 @@ class ProfileFragment : Fragment() {
 
     private val userViewModel: UserViewModel by activityViewModels()
     private val fasilitasiViewModel: FasilitasiViewModel by activityViewModels()
+    private var _prefs: SharedPreferences? = null
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
+    private val prefs get() = _prefs!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         _binding = FragmentProfileBinding.inflate(inflater, container, false)
+        _prefs = activity?.getSharedPreferences("diskoperindag", Context.MODE_PRIVATE)
         return binding.root
     }
 
@@ -38,11 +41,13 @@ class ProfileFragment : Fragment() {
                 UserLoading.LOADING -> {
                     binding.containerStatus.visibility = View.VISIBLE
                     binding.networkStatus.setImageResource(R.drawable.loading_animation)
+                    binding.retry.visibility = View.GONE
                 }
 
                 UserLoading.ERROR -> {
                     binding.containerStatus.visibility = View.VISIBLE
                     binding.networkStatus.setImageResource(R.drawable.ic_connection_error)
+                    binding.retry.visibility = View.VISIBLE
                 }
 
                 else -> {
@@ -50,6 +55,8 @@ class ProfileFragment : Fragment() {
                 }
             }
         }
+
+        binding.name.text = prefs!!.getString("name", "Nama Pelaku")
 
         userViewModel.currentUser.observe(viewLifecycleOwner) { user ->
             binding.name.text = user.user!!.name
@@ -85,6 +92,11 @@ class ProfileFragment : Fragment() {
                     ProfileFragmentDirections.actionProfileFragmentToFasilitasiPelatihanFragment()
                 findNavController().navigate(toDetail)
             }
+        }
+
+        binding.retry.setOnClickListener {
+            userViewModel.retryCachedLogin()
+            fasilitasiViewModel.getAll()
         }
 
     }

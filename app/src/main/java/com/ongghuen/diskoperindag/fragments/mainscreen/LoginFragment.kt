@@ -40,13 +40,7 @@ class LoginFragment : Fragment() {
                 Log.w("CEPTION FIREBASE", "Fetching FCM registration token failed", task.exception)
                 return@OnCompleteListener
             }
-
-            // Get new FCM registration token
-            val token = task.result
-
-            // Log and toast
-            Log.d("CEPTION FIREBASE", token)
-            Toast.makeText(requireContext(), token, Toast.LENGTH_SHORT).show()
+            Log.d("CEPTION FIREBASE", task.result)
         })
 
         viewModel.isLoggedIn.observe(viewLifecycleOwner) { isLoggedIn ->
