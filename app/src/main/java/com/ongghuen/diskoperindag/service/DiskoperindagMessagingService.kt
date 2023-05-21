@@ -18,34 +18,4 @@ class DiskoperindagMessagingService : FirebaseMessagingService() {
         Log.d("CEPTION TOKEN", "Refreshed token: $token")
     }
 
-    override fun onMessageReceived(message: RemoteMessage) {
-        super.onMessageReceived(message)
-
-        Log.d(
-            "CEPTION FIREBASE",
-            "Message: ${message.notification!!.title}: ${message.notification!!.body}"
-        )
-
-        val notificationBuilder = NotificationCompat.Builder(this, "diskoperindag")
-            .setSmallIcon(R.drawable.logo)
-            .setContentTitle("KONTOL")
-            .setContentText("This is a sample notification.")
-            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-
-        with(NotificationManagerCompat.from(this)) {
-            if (ActivityCompat.checkSelfPermission(
-                    applicationContext,
-                    Manifest.permission.POST_NOTIFICATIONS
-                ) != PackageManager.PERMISSION_GRANTED
-            ) {
-                Log.d(
-                    "CEPTION FIREBASE",
-                    "Message: ${message.notification!!.title}: ${message.notification!!.body}"
-                )
-                return
-            }
-            notify(1, notificationBuilder.build())
-        }
-    }
-
 }
