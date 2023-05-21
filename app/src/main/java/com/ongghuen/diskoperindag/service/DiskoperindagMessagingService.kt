@@ -6,8 +6,10 @@ import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
+import com.google.firebase.messaging.ktx.messaging
 import com.ongghuen.diskoperindag.R
 
 class DiskoperindagMessagingService : FirebaseMessagingService() {
@@ -16,6 +18,14 @@ class DiskoperindagMessagingService : FirebaseMessagingService() {
         super.onNewToken(token)
 
         Log.d("CEPTION TOKEN", "Refreshed token: $token")
+        Firebase.messaging.subscribeToTopic("diskoperindag")
+            .addOnCompleteListener { task ->
+                var msg = "Subscribe berhasil"
+                if (!task.isSuccessful) {
+                    msg = "Subscribe gagal"
+                }
+                Log.d("CEPTION FIREBASE MSG", "$msg")
+            }
     }
 
 }

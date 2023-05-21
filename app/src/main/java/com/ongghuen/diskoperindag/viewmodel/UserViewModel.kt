@@ -79,14 +79,14 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     fun logout() {
         _status.value = UserLoading.LOADING
 
+        _isLoggedIn.value = false
+        prefs.edit().clear().apply()
+
         viewModelScope.launch {
             try {
                 val result =
                     DiskoperindagApiService.UserApi.retrofitService.logout(_currentUser.value!!.token)
-                _isLoggedIn.value = false
                 _currentUser.value?.token = ""
-
-                prefs.edit().clear().apply()
 
                 Log.d("USERVIEWMODEL OKCEPTION", result.toString())
                 _status.value = UserLoading.FINISH
@@ -129,6 +129,21 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    private fun checkToken() {
+        viewModelScope.launch {
+            try {
+                val result = DiskoperindagApiService.UserApi.retrofitService.checkToken(
+                    "Bearer " + prefs.getString(
+                        "token", ""
+                    )
+                )
+                Log.d("USERVIEWMODEL OKCEPTION", result.toString())
+            }catch (e: Exception){
+                logout()
+                Log.d("USERVIEWMODEL ERRORCEPTION", e.toString())
+            }
+        }
+    }
 
     init {
         if (prefs.getBoolean("isLoggedIn", false)) {
@@ -137,6 +152,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                 prefs.getString("email", "").toString(),
                 prefs.getString("password", "").toString()
             )
+            checkToken()
         } else {
             _isLoggedIn.value = false
         }

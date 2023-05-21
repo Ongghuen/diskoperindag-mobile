@@ -66,8 +66,6 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun getFavorite() {
-        _status.value = NewsLoading.SAVED_LOADING
-        _status.value = NewsLoading.LOADING
 
         viewModelScope.launch {
             try {

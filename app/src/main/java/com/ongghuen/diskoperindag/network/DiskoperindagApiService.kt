@@ -20,7 +20,7 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-const val BASE = "http://192.168.0.117:8000"
+const val BASE = "http://192.168.100.22:8000"
 const val BASE_URL = "${BASE}/api/"
 
 private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
@@ -43,6 +43,9 @@ class DiskoperindagApiService {
             @Header("Authorization") token: String,
             @Body request: ChangePasswordRequest
         )
+
+        @GET("checkToken")
+        suspend fun checkToken(@Header("Authorization") token: String): String
 
         @GET("news")
         suspend fun getNews(): List<News>
