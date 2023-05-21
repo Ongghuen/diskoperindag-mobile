@@ -21,18 +21,19 @@
     <TextView
         android:id="@+id/title"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:ellipsize="end"
         android:paddingVertical="5dp"
         android:textSize="18sp"
-        android:lines="2"
         android:text="Test"
+        android:maxLines="2"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/newsImage"
+        app:layout_constraintTop_toTopOf="@id/newsImage"
         app:layout_constraintBottom_toTopOf="@id/date"
-        app:layout_constraintTop_toTopOf="@id/newsImage" />
+        />
 
     <TextView
         android:id="@+id/date"

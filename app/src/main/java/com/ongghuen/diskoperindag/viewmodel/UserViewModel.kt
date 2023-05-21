@@ -7,11 +7,16 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.messaging.FirebaseMessaging
+import com.google.firebase.messaging.ktx.messaging
 import com.ongghuen.diskoperindag.model.ChangePasswordRequest
 import com.ongghuen.diskoperindag.model.User
 import com.ongghuen.diskoperindag.model.UserRequest
 import com.ongghuen.diskoperindag.network.DiskoperindagApiService
 import kotlinx.coroutines.launch
+import okhttp3.internal.userAgent
 
 enum class UserLoading {
     INIT, LOADING, SUCCESS, ERROR, FINISH, WRONG_PASSWORD, LOGOUT_ERROR
@@ -59,6 +64,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                 }
 
                 saveSession(isLoggedIn.value!!)
+                assignFCMToken()
                 _status.value = UserLoading.FINISH
 
             } catch (e: Exception) {
@@ -66,6 +72,37 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                 _status.value = UserLoading.ERROR
             }
         }
+
+    }
+
+    private fun assignFCMToken() {
+
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.d("ERRORCEPTION FIREBASEUSERVIEWMODEL", "Fetching gagal", task.exception)
+                return@OnCompleteListener
+            }
+
+            val fcm = task.result
+            if (fcm == currentUser.value!!.user!!.fcm_token) return@OnCompleteListener
+            viewModelScope.launch {
+                try {
+                    val result = DiskoperindagApiService.UserApi.retrofitService.assignToken(
+                        "Bearer " + prefs.getString(
+                            "token", ""
+                        ), fcmToken = fcm
+                    )
+                    with(prefs.edit()) {
+                        putString("fcmToken", fcm)
+                        apply()
+                    }
+                    Log.d("SUCCESSCEPTION FIREBASEUSERVIEWMODEL", "$result")
+                    Log.d("SUCCESSCEPTION FIREBASEUSERVIEWMODEL", "Token: ${fcm}")
+                } catch (e: Exception) {
+                    Log.d("ERRORCEPTION FIREBASEUSERVIEWMODEL", "Token gagal ditambahkan", task.exception)
+                }
+            }
+        })
 
     }
 
@@ -138,7 +175,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                     )
                 )
                 Log.d("USERVIEWMODEL OKCEPTION", result.toString())
-            }catch (e: Exception){
+            } catch (e: Exception) {
                 logout()
                 Log.d("USERVIEWMODEL ERRORCEPTION", e.toString())
             }

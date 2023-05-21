@@ -44,6 +44,12 @@ class DiskoperindagApiService {
             @Body request: ChangePasswordRequest
         )
 
+        @POST("assignToken")
+        suspend fun assignToken(
+            @Header("Authorization") token: String,
+            @Query("fcm_token") fcmToken: String
+        ): String
+
         @GET("checkToken")
         suspend fun checkToken(@Header("Authorization") token: String): String
 

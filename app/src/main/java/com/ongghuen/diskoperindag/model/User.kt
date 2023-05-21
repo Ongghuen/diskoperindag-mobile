@@ -10,6 +10,7 @@ data class User(val user: UserDetail?, var token: String = "", var msg: String =
         val name: String = "",
         val email: String = "",
         val password: String = "",
+        val fcm_token: String?,
         val NIK: String = "",
         val alamat: String = "",
         val phone: String = ""
