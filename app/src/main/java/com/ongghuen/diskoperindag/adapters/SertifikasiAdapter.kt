@@ -45,13 +45,13 @@ class SertifikasiAdapter(private val data: List<Sertifikasi>) :
         val item = data[position]
 
         holder.namaSertifikasi.text = item.nama
-        holder.noSertifikasi.text = item.no_sertifikat
+        holder.noSertifikasi.text = item.pivot!!.no_sertifikat
         holder.tanggalTerbit.text = item.tanggal_terbit
         holder.tanggalKadaluarsa.text = item.kadaluarsa_penyelenggara
 
         holder.container.setOnClickListener {
             val toDetail = FasilitasiSertifikasiFragmentDirections.actionFasilitasiSertifikasiFragmentToFasilitasiSertifikasiDetailFragment(
-                noSertifikat = item.no_sertifikat,
+                noSertifikat = item.pivot!!.no_sertifikat,
                 nama = item.nama,
                 tanggalTerbit = item.tanggal_terbit,
                 kadaluarsaPenyelenggara = item.kadaluarsa_penyelenggara,
