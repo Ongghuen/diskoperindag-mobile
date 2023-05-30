@@ -7,6 +7,7 @@ import com.google.firebase.messaging.ktx.messaging
 
 class DiskoperindagMessagingService : FirebaseMessagingService() {
 
+    // fungsi akan dipanggil tiap token baru digenerate
     override fun onNewToken(token: String) {
         super.onNewToken(token)
 

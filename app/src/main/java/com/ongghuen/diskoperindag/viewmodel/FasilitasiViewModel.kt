@@ -18,6 +18,8 @@ enum class FasilitasiLoading {
     LOADING, SUCCESS, ERROR
 }
 
+// viewmodel fasilitasi digunakan untuk memanggil semua logic yang diperlukan untuk
+// mengambil data fasilitasi untuk user (pelaku ikm) yang berupa bantuan, sertifikasi, pelatihan
 class FasilitasiViewModel(application: Application) : AndroidViewModel(application) {
     val prefs =
         getApplication<Application>().getSharedPreferences("diskoperindag", Context.MODE_PRIVATE)
@@ -37,6 +39,7 @@ class FasilitasiViewModel(application: Application) : AndroidViewModel(applicati
     private var _status = MutableLiveData(FasilitasiLoading.LOADING)
     val status: LiveData<FasilitasiLoading> get() = _status
 
+    // ambil data bantuan
     fun getBantuan() {
         _status.value = FasilitasiLoading.LOADING
 
@@ -75,6 +78,7 @@ class FasilitasiViewModel(application: Application) : AndroidViewModel(applicati
         }
     }
 
+    // ambil data sertifikasi
     fun getSertifikasi() {
         _status.value = FasilitasiLoading.LOADING
         viewModelScope.launch {
@@ -94,6 +98,7 @@ class FasilitasiViewModel(application: Application) : AndroidViewModel(applicati
         }
     }
 
+    // ambil data pelatihan
     fun getPelatihan() {
         viewModelScope.launch {
             try {
@@ -110,12 +115,15 @@ class FasilitasiViewModel(application: Application) : AndroidViewModel(applicati
         }
     }
 
+    // ambil semua data, wrap jadi satu
     fun getAll(){
         getBantuan()
         getSertifikasi()
         getPelatihan()
     }
 
+    // saat viewmodel pertama kali dipanggil atau diinstansiasi (activity viewmodel)
+    // init ini akan dipanggil
     init {
         getAll()
     }

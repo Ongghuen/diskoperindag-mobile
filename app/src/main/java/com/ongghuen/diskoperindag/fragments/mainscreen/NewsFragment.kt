@@ -53,34 +53,39 @@ class NewsFragment : Fragment() {
         }
 
         newsViewModel.news.observe(viewLifecycleOwner) { news ->
-            val item = news[news.size - 1]
-            binding.spotlight.load(checkUrlImg(item)) {
-                placeholder(R.drawable.loading_animation)
-                error(R.drawable.ic_broken_image)
-            }
-            binding.tvHeadline.text = item.judul
-            binding.spotlight.setOnClickListener {
-                val toDetail = NavContentDirections.actionGlobalNewsDetailFragment(
-                    id = item.id,
-                    image = checkUrlImg(item),
-                    title = item.judul,
-                )
-                findNavController().navigate(toDetail)
-            }
-            if (newsViewModel.news.value!!.size > 5) {
-                val listRecycle =
-                    newsViewModel.news.value!!.sortedByDescending { it.id }.take(5).asReversed()
-                binding.newsRecyclerView.adapter =
-                    NewsAdapter(listRecycle, R.layout.news_list_horizontal)
+            if (news.isEmpty()) {
+                binding.placeholderNone.visibility = View.VISIBLE
             } else {
-                binding.newsRecyclerView.adapter =
-                    NewsAdapter(newsViewModel.news.value!!, R.layout.news_list_horizontal)
-            }
-            binding.newsRecyclerView.setHasFixedSize(true)
-            val layoutManager = LinearLayoutManager(requireContext())
-            layoutManager.orientation = LinearLayoutManager.HORIZONTAL
+                binding.placeholderNone.visibility = View.GONE
+                val item = news[news.size - 1]
+                binding.spotlight.load(checkUrlImg(item)) {
+                    placeholder(R.drawable.loading_animation)
+                    error(R.drawable.ic_broken_image)
+                }
+                binding.tvHeadline.text = item.judul
+                binding.spotlight.setOnClickListener {
+                    val toDetail = NavContentDirections.actionGlobalNewsDetailFragment(
+                        id = item.id,
+                        image = checkUrlImg(item),
+                        title = item.judul,
+                    )
+                    findNavController().navigate(toDetail)
+                }
+                if (newsViewModel.news.value!!.size > 5) {
+                    val listRecycle =
+                        newsViewModel.news.value!!.sortedByDescending { it.id }.take(5).asReversed()
+                    binding.newsRecyclerView.adapter =
+                        NewsAdapter(listRecycle, R.layout.news_list_horizontal)
+                } else {
+                    binding.newsRecyclerView.adapter =
+                        NewsAdapter(newsViewModel.news.value!!, R.layout.news_list_horizontal)
+                }
+                binding.newsRecyclerView.setHasFixedSize(true)
+                val layoutManager = LinearLayoutManager(requireContext())
+                layoutManager.orientation = LinearLayoutManager.HORIZONTAL
 
-            binding.newsRecyclerView.layoutManager = layoutManager
+                binding.newsRecyclerView.layoutManager = layoutManager
+            }
         }
 
         binding.swipeRefresh.setOnRefreshListener {
@@ -90,7 +95,6 @@ class NewsFragment : Fragment() {
 
         binding.retry.setOnClickListener {
             newsViewModel.getNews()
-            newsViewModel.getFavorite()
         }
 
         binding.tvMore.setOnClickListener {

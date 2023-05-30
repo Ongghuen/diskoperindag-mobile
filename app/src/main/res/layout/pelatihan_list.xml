@@ -19,11 +19,11 @@
     <TextView
         android:id="@+id/fasilitasiName"
         android:layout_width="300dp"
+        android:maxLines="2"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginVertical="20dp"
         android:ellipsize="end"
-        android:maxEms="5"
         android:singleLine="false"
         android:text="Nama Pelatihan"
         android:textColor="@color/white"

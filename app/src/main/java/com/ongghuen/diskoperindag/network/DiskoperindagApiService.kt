@@ -20,9 +20,11 @@ import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-const val BASE = "http://192.168.100.22:8000"
+// variabel ini digunakan untuk menumpu kepada url api yang dituju
+const val BASE = "http://192.168.30.112:8000"
 const val BASE_URL = "${BASE}/api/"
 
+// variabel ini digunakan untuk menginstansiasi moshi
 private val moshi = Moshi.Builder().add(KotlinJsonAdapterFactory()).build()
 private val retrofit =
     Retrofit.Builder().addConverterFactory(MoshiConverterFactory.create(moshi)).baseUrl(
@@ -31,6 +33,7 @@ private val retrofit =
 
 class DiskoperindagApiService {
 
+    // interface ini digunakan untuk mengakses entry point api
     interface UserApiService {
         @POST("login")
         suspend fun login(@Body user: UserRequest): User
@@ -90,6 +93,8 @@ class DiskoperindagApiService {
         suspend fun getPelatihan(@Header("Authorization") token: String): List<Pelatihan>
     }
 
+    // object ini digunakan untuk mengakses atau memanggil fungsi yang berada
+    // di interface
     object UserApi {
         val retrofitService: UserApiService by lazy {
             retrofit.create(UserApiService::class.java)

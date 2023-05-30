@@ -21,7 +21,8 @@
 
     <TextView
         android:id="@+id/namaPelatihan"
-        android:layout_width="180dp"
+        android:layout_width="240dp"
+        android:maxLines="2"
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:layout_marginLeft="20dp"

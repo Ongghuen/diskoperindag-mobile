@@ -15,6 +15,8 @@ enum class NewsLoading {
     LOADING, SUCCESS, ERROR, SAVED_LOADING, SAVED_ERROR
 }
 
+// viewmodel ini digunakan untuk mengambil semua logic untuk berita
+// seperti mengambil semua berita, detail berita, berita favorit
 class NewsViewModel(application: Application) : AndroidViewModel(application) {
 
     val prefs =
@@ -31,6 +33,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
     private var _status = MutableLiveData(NewsLoading.LOADING)
     val status: LiveData<NewsLoading> get() = _status
 
+    // fungsi untuk mengambil semua berita
     fun getNews() {
         _status.value = NewsLoading.LOADING
         viewModelScope.launch {
@@ -38,15 +41,16 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
                 val news = DiskoperindagApiService.UserApi.retrofitService.getNews()
                 _news.value = news
                 Log.d("SUCCCEPTION", news.toString())
+                _status.value = NewsLoading.SUCCESS
             } catch (e: Exception) {
-                Log.d("ERRORCEPTION", e.toString())
-                _status.value = NewsLoading.SAVED_ERROR
+                Log.d("ERRORCEPTION news", e.toString())
                 _status.value = NewsLoading.ERROR
             }
         }
 
     }
 
+    // fungsi untuk mengambil detail berita
     fun getNews(id: String) {
 
         _status.value = NewsLoading.LOADING
@@ -65,6 +69,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
 
     }
 
+    // fungsi untuk mengambil berita yang telah difavoritkan oleh user
     fun getFavorite() {
 
         viewModelScope.launch {
@@ -84,6 +89,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    // fungsi untuk menambahkan berita ke favorit user
     fun addFavorite(id: String) {
         viewModelScope.launch {
             try {
@@ -99,6 +105,7 @@ class NewsViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    // fungsi untuk menghapus favorit dari favorit user
     fun deleteFavorite(id: String) {
         viewModelScope.launch {
             try {

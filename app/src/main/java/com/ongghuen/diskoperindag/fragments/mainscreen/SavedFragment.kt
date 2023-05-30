@@ -36,22 +36,26 @@ class SavedFragment : Fragment() {
 
 
         newsViewModel.status.observe(viewLifecycleOwner) { status ->
-            when(status) {
+            when (status) {
                 NewsLoading.SAVED_LOADING -> {
                     binding.networkStatus.setImageResource(R.drawable.loading_animation)
                 }
+
                 NewsLoading.LOADING -> {
                     binding.containerStatus.visibility = View.VISIBLE
                     binding.networkStatus.setImageResource(R.drawable.loading_animation)
                     binding.retry.visibility = View.GONE
                 }
+
                 NewsLoading.ERROR -> {
                     binding.containerStatus.visibility = View.VISIBLE
                     binding.networkStatus.setImageResource(R.drawable.ic_connection_error)
                 }
+
                 NewsLoading.SAVED_ERROR -> {
                     binding.retry.visibility = View.VISIBLE
                 }
+
                 else -> {
                     binding.containerStatus.visibility = View.GONE
                 }
@@ -64,10 +68,21 @@ class SavedFragment : Fragment() {
         }
 
         newsViewModel.favorites.observe(viewLifecycleOwner) { favorites ->
-            binding.savedRecyclerView.adapter = NewsAdapter(newsViewModel.favorites.value!!, R.layout.news_list_vertical)
+            if (favorites.isEmpty()) {
+                binding.placeholderNone.visibility = View.VISIBLE
+            } else {
+                binding.placeholderNone.visibility = View.GONE
+            }
+            binding.savedRecyclerView.adapter =
+                NewsAdapter(favorites, R.layout.news_list_vertical)
             binding.savedRecyclerView.setHasFixedSize(true)
             binding.searchField.addTextChangedListener {
-                val value = newsViewModel.favorites.value!!.filter { it.judul.contains(binding.searchField.text.toString(), true) }
+                val value = favorites.filter {
+                    it.judul.contains(
+                        binding.searchField.text.toString(),
+                        true
+                    )
+                }
                 binding.savedRecyclerView.adapter = NewsAdapter(value, R.layout.news_list_vertical)
             }
         }

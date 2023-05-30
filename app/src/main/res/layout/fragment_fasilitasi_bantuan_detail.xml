@@ -20,10 +20,12 @@
 
     <TextView
         android:id="@+id/namaBantuan"
-        android:layout_width="wrap_content"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
         android:paddingHorizontal="20dp"
         android:text="Loading i guess.."
+        android:maxLines="2"
+        android:ellipsize="end"
         android:textColor="@color/white"
         android:textSize="16dp"
         android:textStyle="bold"
@@ -60,44 +62,25 @@
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/dividerOne"
         app:layout_constraintTop_toBottomOf="@id/dividerOne" />
-
-    <TextView
-        android:id="@+id/jenis_usaha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Jenis Usaha: "
-        android:layout_marginTop="20dp"
-        android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/detail_bantuan"
-        app:layout_constraintTop_toBottomOf="@id/detail_bantuan" />
-
-    <TextView
-        android:id="@+id/nama_jenis_usaha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nama Jenis Usaha"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@id/jenis_usaha"
-        app:layout_constraintEnd_toEndOf="@+id/dividerOne"
-        app:layout_constraintTop_toTopOf="@id/jenis_usaha" />
-
     <TextView
         android:id="@+id/koordinator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Koordinator: "
         android:textSize="16sp"
-        app:layout_constraintStart_toStartOf="@+id/jenis_usaha"
-        app:layout_constraintTop_toBottomOf="@id/jenis_usaha" />
+        app:layout_constraintStart_toStartOf="@+id/detail_bantuan"
+        app:layout_constraintTop_toBottomOf="@id/detail_bantuan"
+        app:layout_constraintBottom_toBottomOf="@id/nama_koordinator"
+        />
 
     <TextView
         android:id="@+id/nama_koordinator"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
+        android:textAlignment="textEnd"
         android:layout_height="wrap_content"
         android:singleLine="false"
         android:text="Nama Koordinator"
         android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@id/koordinator"
         app:layout_constraintEnd_toEndOf="@+id/dividerOne"
         app:layout_constraintTop_toTopOf="@id/koordinator" />
 
@@ -108,17 +91,18 @@
         android:textSize="16sp"
         android:text="Sumber Anggaran: "
         app:layout_constraintStart_toStartOf="@+id/koordinator"
-        app:layout_constraintTop_toBottomOf="@id/koordinator" />
+        app:layout_constraintTop_toTopOf="@id/nama_sumber_anggaran" />
 
     <TextView
         android:id="@+id/nama_sumber_anggaran"
-        android:layout_width="wrap_content"
+        android:layout_width="200dp"
+        android:textAlignment="textEnd"
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:text="Nama Anggaran"
-        app:layout_constraintBottom_toBottomOf="@id/sumber_anggaran"
         app:layout_constraintEnd_toEndOf="@+id/dividerOne"
-        app:layout_constraintTop_toTopOf="@id/sumber_anggaran" />
+        app:layout_constraintTop_toBottomOf="@id/nama_koordinator"
+        />
 
     <com.google.android.material.divider.MaterialDivider
         android:id="@+id/dividerTwo"
@@ -145,8 +129,10 @@
         android:layout_marginTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/detail_item" />
+        app:layout_constraintTop_toBottomOf="@id/detail_item"
+        app:layout_constraintVertical_bias="0.2" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/containerNetwork"

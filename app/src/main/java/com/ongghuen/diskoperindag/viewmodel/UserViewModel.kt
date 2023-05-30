@@ -42,6 +42,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
     private var _statusPass = MutableLiveData(ChangePassLoading.LOADING)
     val statusPass: LiveData<ChangePassLoading> get() = _statusPass
 
+    // fungsi login untuk masuk ke dalam aplikasi
     fun login(email: String, password: String) {
 
         _status.value = UserLoading.LOADING
@@ -75,6 +76,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
 
     }
 
+    // fungsi ini berguna untuk menambahkan fcm token saat ini ke user
     private fun assignFCMToken() {
 
         FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
@@ -99,13 +101,18 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
                     Log.d("SUCCESSCEPTION FIREBASEUSERVIEWMODEL", "$result")
                     Log.d("SUCCESSCEPTION FIREBASEUSERVIEWMODEL", "Token: ${fcm}")
                 } catch (e: Exception) {
-                    Log.d("ERRORCEPTION FIREBASEUSERVIEWMODEL", "Token gagal ditambahkan", task.exception)
+                    Log.d(
+                        "ERRORCEPTION FIREBASEUSERVIEWMODEL",
+                        "Token gagal ditambahkan",
+                        task.exception
+                    )
                 }
             }
         })
 
     }
 
+    // fungsi ini berguna untuk mencoba kembali sesi yang telah disave
     fun retryCachedLogin() {
         login(
             prefs.getString("email", "").toString(),
@@ -113,6 +120,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         )
     }
 
+    // fungsi ini berguna untuk logout
     fun logout() {
         _status.value = UserLoading.LOADING
 
@@ -134,6 +142,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    // fungsi ini berguna untuk menyimpan sesi agar user tidak usah repot repot kembali keluar ke login screen dan login kembali
     fun saveSession(isLoggedIn: Boolean) {
         with(prefs.edit()) {
             putBoolean("isLoggedIn", isLoggedIn)
@@ -143,6 +152,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    // fungsi ini berguna untuk mengganti password user
     fun changePassword(request: ChangePasswordRequest) {
         _statusPass.value = ChangePassLoading.LOADING
         viewModelScope.launch {
@@ -166,6 +176,8 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    // fungsi ini berguna untuk mengecek token yang disimpan di session lalu jika token sudah expired
+    // maka user dikeluarkan
     private fun checkToken() {
         viewModelScope.launch {
             try {
@@ -182,6 +194,7 @@ class UserViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
+    // digunakan saat pertamakali viewmodel dipanggil
     init {
         if (prefs.getBoolean("isLoggedIn", false)) {
             _isLoggedIn.value = true

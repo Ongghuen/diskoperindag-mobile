@@ -26,7 +26,7 @@
         android:textStyle="bold"
         android:layout_marginLeft="20dp"
         android:ellipsize="end"
-        android:maxEms="5"
+        android:maxLines="2"
         android:singleLine="false"
         android:text="Nama Sertifikat"
         android:textColor="@color/white"

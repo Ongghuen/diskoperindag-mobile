@@ -23,7 +23,7 @@
         android:layout_marginHorizontal="20dp"
         android:layout_marginVertical="20dp"
         android:ellipsize="end"
-        android:maxEms="5"
+        android:maxLines="2"
         android:singleLine="false"
         android:text="Nama Sertifikasi"
         android:textColor="@color/white"

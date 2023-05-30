@@ -48,8 +48,13 @@ class NewsAllFragment : Fragment() {
         }
 
         newsViewModel.news.observe(viewLifecycleOwner) { news ->
+            if (news.isEmpty()) {
+                binding.placeholderNone.visibility = View.VISIBLE
+            } else {
+                binding.placeholderNone.visibility = View.GONE
+            }
             binding.newsRecyclerView.adapter =
-                NewsAdapter(newsViewModel.news.value!!.reversed(), R.layout.news_list_vertical)
+                NewsAdapter(news.reversed(), R.layout.news_list_vertical)
             binding.newsRecyclerView.setHasFixedSize(true)
             binding.searchField.addTextChangedListener {
                 val value = newsViewModel.news.value!!.filter { it.judul.contains(binding.searchField.text.toString(), true) }

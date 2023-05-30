@@ -60,6 +60,7 @@ class ProfileFragment : Fragment() {
 
         userViewModel.currentUser.observe(viewLifecycleOwner) { user ->
             binding.name.text = user.user!!.name
+            binding.placeholder.text = user.user.jenis_usaha
             binding.clAccountSetting.setOnClickListener {
                 val toDetail =
                     ProfileFragmentDirections.actionProfileFragmentToProfileDetailFragment()
